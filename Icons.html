@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>mxriyum — Icons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #2E2621;
+    --paper: #FBF8F3;
+    --cream: #F5EFE7;
+    --mauve: #B69B8E;
+    --walnut: #8A6F5F;
+    --sage: #8A9579;
+    --tomato: #C85943;
+    --butter: #E8B94D;
+    --berry: #8A3A4E;
+    --rule: rgba(46,38,33,0.12);
+    --muted: rgba(46,38,33,0.55);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1320px; margin: 0 auto; padding: 72px 56px 120px; }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    display: inline-flex; align-items: baseline; color: var(--mauve); line-height: 1;
+  }
+  .logo .yum {
+    font-family: 'Pinyon Script', cursive; font-size: 1.15em;
+    margin-left: -0.03em; transform: translateY(0.08em); display: inline-block;
+  }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 600; color: var(--walnut);
+  }
+  .display {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(48px, 7vw, 84px); letter-spacing: -0.02em;
+    line-height: 0.95; color: var(--ink);
+  }
+
+  .page-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 48px; margin-bottom: 64px; padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-header .meta { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 380px; }
+  .page-header .meta strong { color: var(--ink); font-weight: 600; }
+
+  .section { margin-bottom: 96px; }
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; margin-bottom: 28px;
+  }
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: 42px; margin: 0; letter-spacing: -0.02em;
+  }
+  .section-head .sub { color: var(--muted); font-size: 14px; max-width: 420px; text-align: right; line-height: 1.5; }
+
+  /* ─── ICON GRID ─── */
+  .icon-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  .icon-tile {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 20px 16px 14px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+  }
+  .icon-tile:hover {
+    transform: translateY(-2px);
+    border-color: var(--ink);
+    box-shadow: 0 6px 20px rgba(46,38,33,0.08);
+  }
+  .icon-tile svg { width: 36px; height: 36px; color: var(--ink); }
+  .icon-tile .name {
+    font-size: 11px; font-weight: 500; color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .icon-tile .token {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--muted);
+  }
+
+  /* Category tiles — larger, tinted */
+  .cat-grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  .cat-tile {
+    border-radius: 10px;
+    padding: 28px 20px 22px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    cursor: pointer;
+    transition: transform 0.12s ease;
+    border: 1px solid var(--rule);
+  }
+  .cat-tile:hover { transform: translateY(-2px); }
+  .cat-tile svg { width: 44px; height: 44px; }
+  .cat-tile .cat-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; letter-spacing: -0.01em;
+  }
+
+  /* ─── USAGE EXAMPLES ─── */
+  .examples { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; }
+  .example-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .example-caption {
+    padding: 14px 18px;
+    font-size: 11px; color: var(--muted);
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between;
+  }
+
+  /* Recipe meta row */
+  .meta-row {
+    padding: 36px 32px; display: flex; gap: 28px; align-items: center;
+    justify-content: center; height: 280px; flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--walnut);
+  }
+  .meta-item svg { width: 28px; height: 28px; }
+  .meta-item .lbl { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item .val { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--ink); }
+
+  /* Social strip */
+  .social-strip {
+    padding: 36px; display: flex; gap: 20px; align-items: center;
+    justify-content: center; height: 280px; background: var(--cream);
+  }
+  .social-strip a {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--walnut);
+    border: 1px solid var(--rule);
+    transition: all 0.15s;
+    cursor: pointer;
+  }
+  .social-strip a:hover { color: var(--mauve); border-color: var(--mauve); transform: translateY(-2px); }
+  .social-strip svg { width: 20px; height: 20px; }
+
+  /* Toolbar search example */
+  .toolbar {
+    padding: 24px 28px; height: 280px;
+    display: flex; flex-direction: column; gap: 18px; justify-content: center;
+  }
+  .search-input {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px; border-radius: 999px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    font-size: 13px; color: var(--muted);
+  }
+  .search-input svg { width: 16px; height: 16px; color: var(--walnut); }
+  .tool-btn-row { display: flex; gap: 10px; }
+  .tool-btn {
+    flex: 1; padding: 10px 12px; border-radius: 8px;
+    border: 1px solid var(--rule); background: #fff;
+    display: flex; align-items: center; gap: 8px; justify-content: center;
+    font-size: 12px; font-weight: 500; cursor: pointer;
+    color: var(--ink);
+  }
+  .tool-btn svg { width: 16px; height: 16px; color: var(--walnut); }
+  .tool-btn:hover { border-color: var(--ink); }
+
+  /* Stroke weight demo */
+  .stroke-demo {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .stroke-card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 32px 24px; text-align: center;
+  }
+  .stroke-card svg { width: 48px; height: 48px; color: var(--ink); margin-bottom: 16px; }
+  .stroke-card .wlabel { font-size: 12px; font-weight: 500; margin-bottom: 4px; }
+  .stroke-card .wnote { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .stroke-card.chosen { border-color: var(--ink); background: var(--cream); }
+  .stroke-card.chosen .wnote::after { content: '  · chosen'; color: var(--tomato); }
+
+  /* Size demo */
+  .size-demo {
+    display: flex; align-items: flex-end; gap: 40px; justify-content: center;
+    padding: 36px 28px; background: #fff;
+    border: 1px solid var(--rule); border-radius: 10px;
+  }
+  .size-item { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--ink); }
+  .size-item .px { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: var(--paper);
+    padding: 12px 20px; border-radius: 8px;
+    font-size: 13px; font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0; transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none; z-index: 100;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .principles {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+  .principle {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 22px 22px 24px;
+  }
+  .principle .pn { font-family: 'Cormorant Garamond', serif; font-size: 26px; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .principle .pd { font-size: 12px; line-height: 1.5; color: var(--muted); }
+  .principle .pi { color: var(--mauve); margin-bottom: 10px; display: block; }
+  .principle .pi svg { width: 24px; height: 24px; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ─── HEADER ─── -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow" style="margin-bottom: 14px;">Brand System · 03</div>
+      <span class="logo" style="font-size: 56px;">mari<span class="yum">yum</span></span>
+      <div class="display" style="margin-top: 18px;">Icons.</div>
+    </div>
+    <div class="meta">
+      <strong>Twenty icons</strong>, all drawn on a 24×24 grid with <strong>1.5px strokes, rounded caps & joins</strong>. Warm and precise — thin enough to sit next to the light serif, confident enough to read at 16px. Click any icon to copy its name as a token.
+    </div>
+  </div>
+
+  <!-- ─── PRINCIPLES ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Principles.</h2>
+      <div class="sub">The rules every icon follows — so they feel like a family, not a collection.</div>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></span>
+        <div class="pn">24 × 24 grid.</div>
+        <div class="pd">Every icon is drawn inside a 24-unit square with a 1.5-unit safe-area padding. Scale by multiplying.</div>
+      </div>
+      <div class="principle">
+        <span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18L20 6M4 14L14 6M4 10L8 6"/></svg></span>
+        <div class="pn">1.5px stroke.</div>
+        <div class="pd">Thin enough to pair with Cormorant, heavy enough to hold at 16px. One weight across the system.</div>
+      </div>
+      <div class="principle">
+        <span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4M12 16h.01"/></svg></span>
+        <div class="pn">Round caps.</div>
+        <div class="pd">Stroke-linecap and stroke-linejoin are both round. Softens the geometry; feels kitchen-warm, not technical.</div>
+      </div>
+      <div class="principle">
+        <span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></span>
+        <div class="pn">Stroke only.</div>
+        <div class="pd">No fills. Color via <code>currentColor</code> so icons inherit from surrounding text — including hover and state changes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── UI ICONS ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>UI · six essentials.</h2>
+      <div class="sub">The controls every page needs. Search, nav, save-for-later, share, dismiss, back.</div>
+    </div>
+    <div id="ui-grid" class="icon-grid"></div>
+  </div>
+
+  <!-- ─── CATEGORY ICONS ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Categories · six meals.</h2>
+      <div class="sub">The site's six recipe sections. Each sits on its own palette tint — already wired to the category chips from the color system.</div>
+    </div>
+    <div id="cat-grid" class="cat-grid"></div>
+  </div>
+
+  <!-- ─── RECIPE META ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Recipe meta · four marks.</h2>
+      <div class="sub">Sit next to numbers. Time, servings, difficulty, dietary notes.</div>
+    </div>
+    <div id="meta-grid" class="icon-grid"></div>
+  </div>
+
+  <!-- ─── SOCIAL ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Social · four platforms.</h2>
+      <div class="sub">Simplified, same stroke weight, same corner treatment. They fit the family instead of each shouting a brand color.</div>
+    </div>
+    <div id="social-grid" class="icon-grid"></div>
+  </div>
+
+  <!-- ─── IN CONTEXT ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>In context.</h2>
+      <div class="sub">Three real-world compositions showing the icons doing their job.</div>
+    </div>
+    <div class="examples">
+      <!-- Recipe meta strip -->
+      <div class="example-card">
+        <div class="meta-row">
+          <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="val">45 min</div><div class="lbl">Time</div></div>
+          <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6"/></svg><div class="val">Serves 8</div><div class="lbl">Yield</div></div>
+          <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18L10 10 14 14 20 6"/><path d="M14 6h6v6"/></svg><div class="val">Easy</div><div class="lbl">Level</div></div>
+          <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 5 6 7 6 11a6 6 0 01-12 0c0-4 3-6 6-11z"/></svg><div class="val">V</div><div class="lbl">Dietary</div></div>
+        </div>
+        <div class="example-caption"><span>Recipe header meta row</span><span>meta · 28px</span></div>
+      </div>
+
+      <!-- Search + toolbar -->
+      <div class="example-card">
+        <div class="toolbar">
+          <div class="search-input">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+            <span>Search recipes…</span>
+          </div>
+          <div class="tool-btn-row">
+            <button class="tool-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l-9 15h18z" transform="rotate(180 12 12)"/><path d="M12 20.5l-9-15h18z"/></svg>
+              Save
+            </button>
+            <button class="tool-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+              Share
+            </button>
+          </div>
+        </div>
+        <div class="example-caption"><span>Search & toolbar</span><span>ui · 16px</span></div>
+      </div>
+
+      <!-- Social strip -->
+      <div class="example-card">
+        <div class="social-strip">
+          <a title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+          <a title="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.5a3.5 3.5 0 11-3.5-3.5"/><path d="M14 4c.5 2.5 2.5 4 5 4"/></svg></a>
+          <a title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5v5l5-2.5z" fill="currentColor" stroke="none"/></svg></a>
+          <a title="Twitter/X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l7.5 9.5L4.5 20M20 4l-7 8L20 20"/></svg></a>
+        </div>
+        <div class="example-caption"><span>Footer social</span><span>social · 20px</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SIZES ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Sizes.</h2>
+      <div class="sub">Use these five standard sizes. Stroke stays at 1.5px; the SVG scales.</div>
+    </div>
+    <div class="size-demo">
+      <div class="size-item"><svg style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg><div class="px">14 · inline</div></div>
+      <div class="size-item"><svg style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg><div class="px">16 · ui</div></div>
+      <div class="size-item"><svg style="width:20px;height:20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg><div class="px">20 · button</div></div>
+      <div class="size-item"><svg style="width:28px;height:28px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg><div class="px">28 · meta</div></div>
+      <div class="size-item"><svg style="width:44px;height:44px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg><div class="px">44 · category</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast" class="toast">copied</div>
+
+<script src="icons.js"></script>
+
+</body>
+</html>

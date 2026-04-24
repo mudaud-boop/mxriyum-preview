@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>mxriyum — Typography</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Pinyon+Script&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #2E2621;
+    --paper: #FBF8F3;
+    --cream: #F5EFE7;
+    --mauve: #B69B8E;
+    --walnut: #8A6F5F;
+    --sage: #8A9579;
+    --tomato: #C85943;
+    --berry: #8A3A4E;
+    --rule: rgba(46,38,33,0.12);
+    --muted: rgba(46,38,33,0.55);
+
+    /* ─── TYPE SCALE · 1.25 (major third), 16px base ─── */
+    --t-display: 84px;
+    --t-h1: 56px;
+    --t-h2: 40px;
+    --t-h3: 26px;
+    --t-h4: 20px;
+    --t-body: 16px;
+    --t-small: 14px;
+    --t-caption: 13px;
+    --t-eyebrow: 11px;
+
+    /* Families */
+    --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+    --font-script:  'Pinyon Script', cursive;
+    --font-body:    'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper); color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1320px; margin: 0 auto; padding: 72px 56px 120px; }
+
+  /* ─── HELPERS ─── */
+  .logo {
+    font-family: var(--font-display); font-weight: 400;
+    display: inline-flex; align-items: baseline; color: var(--mauve); line-height: 1;
+  }
+  .logo .yum {
+    font-family: var(--font-script); font-size: 1.15em;
+    margin-left: -0.03em; transform: translateY(0.08em); display: inline-block;
+  }
+  .eyebrow {
+    font-size: var(--t-eyebrow); letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 600; color: var(--walnut);
+  }
+  .display { font-family: var(--font-display); font-weight: 300; font-size: var(--t-display); letter-spacing: -0.02em; line-height: 0.95; }
+  .h2 { font-family: var(--font-display); font-weight: 400; font-size: var(--t-h2); letter-spacing: -0.02em; margin: 0; }
+
+  .page-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 48px; margin-bottom: 72px;
+    padding-bottom: 32px; border-bottom: 1px solid var(--rule);
+  }
+  .page-header .meta { font-size: var(--t-caption); color: var(--muted); line-height: 1.6; max-width: 400px; }
+  .page-header .meta strong { color: var(--ink); font-weight: 600; }
+
+  .section { margin-bottom: 96px; }
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; margin-bottom: 28px;
+  }
+  .section-head h2 { font-family: var(--font-display); font-weight: 400; font-size: var(--t-h2); margin: 0; letter-spacing: -0.02em; }
+  .section-head .sub { color: var(--muted); font-size: var(--t-small); max-width: 420px; text-align: right; line-height: 1.5; }
+
+  /* ─── FAMILIES ─── */
+  .fam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .fam-card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 36px 32px 32px;
+    display: flex; flex-direction: column;
+  }
+  .fam-specimen { font-size: 120px; line-height: 1; letter-spacing: -0.03em; margin-bottom: 20px; color: var(--ink); }
+  .fam-role { font-size: var(--t-eyebrow); letter-spacing: 0.18em; text-transform: uppercase; color: var(--walnut); font-weight: 600; margin-bottom: 8px; }
+  .fam-name { font-family: var(--font-display); font-size: 32px; letter-spacing: -0.01em; font-weight: 400; margin-bottom: 10px; }
+  .fam-desc { font-size: var(--t-caption); color: var(--muted); line-height: 1.55; margin-bottom: 18px; flex: 1; }
+  .fam-weights { display: flex; gap: 10px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+  .fam-weights span { padding: 3px 8px; border: 1px solid var(--rule); border-radius: 3px; }
+
+  /* ─── SCALE TABLE ─── */
+  .scale-rows { display: flex; flex-direction: column; gap: 2px; }
+  .scale-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 180px;
+    gap: 32px;
+    align-items: baseline;
+    padding: 22px 24px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-bottom: none;
+    transition: background 0.12s;
+  }
+  .scale-row:hover { background: var(--cream); }
+  .scale-row:first-child { border-radius: 10px 10px 0 0; }
+  .scale-row:last-child { border-radius: 0 0 10px 10px; border-bottom: 1px solid var(--rule); }
+  .scale-row .sname { font-family: var(--font-mono); font-size: 11px; color: var(--ink); }
+  .scale-row .sname .tk { color: var(--muted); font-size: 10px; display: block; margin-top: 2px; }
+  .scale-row .smeta { font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-align: right; line-height: 1.6; }
+
+  /* ─── HIERARCHY DEMO ─── */
+  .hier-card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 64px 64px 56px;
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px;
+    align-items: start;
+  }
+  .hier-img {
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--mauve), var(--walnut));
+    border-radius: 6px;
+    position: relative; overflow: hidden;
+  }
+  .hier-img::after {
+    content: 'recipe photo';
+    position: absolute; bottom: 20px; left: 20px;
+    font-family: var(--font-mono); font-size: 10px;
+    color: rgba(255,255,255,0.6); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .hier-body > * + * { margin-top: 14px; }
+  .hier-body .h-eyebrow { font-size: var(--t-eyebrow); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--tomato); margin-bottom: 24px; }
+  .hier-body .h-title { font-family: var(--font-display); font-weight: 300; font-size: 72px; line-height: 0.95; letter-spacing: -0.025em; margin-bottom: 20px; }
+  .hier-body .h-title em { font-family: var(--font-script); font-style: normal; font-size: 1.1em; color: var(--mauve); }
+  .hier-body .h-lede { font-size: 18px; line-height: 1.55; color: var(--walnut); font-weight: 400; max-width: 52ch; margin-bottom: 32px; }
+  .hier-body .h-meta { display: flex; gap: 32px; padding: 20px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .hier-body .h-meta .mi { display: flex; flex-direction: column; gap: 4px; }
+  .hier-body .h-meta .lbl { font-size: var(--t-eyebrow); letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .hier-body .h-meta .val { font-family: var(--font-display); font-size: 26px; font-weight: 400; }
+  .hier-body .h-section { font-family: var(--font-display); font-size: 32px; font-weight: 400; letter-spacing: -0.015em; margin-top: 32px; margin-bottom: 4px; }
+  .hier-body .h-body { font-size: var(--t-body); line-height: 1.65; color: var(--ink); max-width: 56ch; }
+  .hier-body .h-caption { font-size: var(--t-caption); color: var(--muted); font-style: italic; }
+
+  /* ─── LIVE SPECIMEN ─── */
+  .spec-card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 32px 36px;
+  }
+  .spec-row {
+    display: grid; grid-template-columns: 220px 1fr; gap: 40px;
+    align-items: baseline;
+    padding: 26px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .spec-row:first-child { border-top: none; padding-top: 0; }
+  .spec-row:last-child { padding-bottom: 0; }
+  .spec-label { display: flex; flex-direction: column; gap: 4px; }
+  .spec-label .n { font-family: var(--font-mono); font-size: 11px; color: var(--ink); font-weight: 500; }
+  .spec-label .s { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+  .spec-text { min-height: 1.2em; outline: none; }
+  .spec-text:focus { background: var(--cream); padding: 8px 12px; margin: -8px -12px; border-radius: 4px; }
+
+  /* ─── RULES / PRINCIPLES ─── */
+  .rules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .rule-card { background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 28px 28px 26px; }
+  .rule-card .rnum { font-family: var(--font-display); font-size: 44px; font-weight: 300; color: var(--mauve); line-height: 1; margin-bottom: 12px; }
+  .rule-card .rhead { font-family: var(--font-display); font-size: 26px; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .rule-card .rtext { font-size: var(--t-small); line-height: 1.6; color: var(--walnut); }
+  .rule-card code { font-family: var(--font-mono); font-size: 12px; background: var(--cream); padding: 2px 6px; border-radius: 3px; }
+
+  /* ─── DO / DONT ─── */
+  .dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .dd-card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 32px; display: flex; flex-direction: column; gap: 20px;
+  }
+  .dd-card .dd-tag {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    display: inline-block; padding: 4px 10px; border-radius: 3px;
+    width: fit-content;
+  }
+  .dd-card.good .dd-tag { background: #DCE0D0; color: #3A4230; }
+  .dd-card.bad .dd-tag { background: #F4CABE; color: #5E1F12; }
+  .dd-card .dd-demo { padding: 20px 0; }
+  .dd-card .dd-note { font-size: var(--t-small); color: var(--walnut); line-height: 1.55; }
+
+  /* ─── LINE-LENGTH DEMO ─── */
+  .ll-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ll-card { background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 28px; }
+  .ll-card .ll-caption { font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-bottom: 14px; letter-spacing: 0.08em; }
+  .ll-card .ll-text { font-size: var(--t-body); line-height: 1.65; color: var(--ink); }
+  .ll-card.good { border-color: var(--sage); }
+  .ll-card.good .ll-caption { color: #3A4230; }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 32px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: var(--paper);
+    padding: 12px 20px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; font-family: var(--font-mono);
+    opacity: 0; transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none; z-index: 100;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ─── HEADER ─── -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow" style="margin-bottom: 14px;">Brand System · 04</div>
+      <span class="logo" style="font-size: 56px;">mari<span class="yum">yum</span></span>
+      <div class="display" style="margin-top: 18px;">Typography.</div>
+    </div>
+    <div class="meta">
+      <strong>Three families, nine sizes.</strong> Cormorant Garamond carries the voice, Pinyon Script the accent, Inter the chassis. Scale is a <strong>major third (1.25)</strong> on a 16px base — tight and editorial. Every size below is copy-able.
+    </div>
+  </div>
+
+  <!-- ─── 1 · FAMILIES ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Families.</h2>
+      <div class="sub">Three voices. Each one has a specific job — use the right one.</div>
+    </div>
+
+    <div class="fam-grid">
+      <div class="fam-card">
+        <div class="fam-specimen" style="font-family: var(--font-display); font-weight: 300; line-height: 0.85;">Aa</div>
+        <div class="fam-role">Display · Serif</div>
+        <div class="fam-name">Cormorant Garamond</div>
+        <div class="fam-desc">The voice. Headlines, recipe titles, section heads. Use at 20px and up — its fine bracket serifs collapse at small sizes.</div>
+        <div class="fam-weights">
+          <span>300 light</span><span>400 reg</span><span>500 med</span><span>400 italic</span>
+        </div>
+      </div>
+
+      <div class="fam-card">
+        <div class="fam-specimen" style="font-family: var(--font-script); font-size: 160px; line-height: 0.8; color: var(--mauve);">yum</div>
+        <div class="fam-role">Accent · Script</div>
+        <div class="fam-name">Pinyon Script</div>
+        <div class="fam-desc">The flourish. Logo's "yum", a one-word hero accent, a cookbook dedication. Never body, never headings — used sparingly or it loses meaning.</div>
+        <div class="fam-weights">
+          <span>400 reg only</span><span>use 1–2× per page</span>
+        </div>
+      </div>
+
+      <div class="fam-card">
+        <div class="fam-specimen" style="font-family: var(--font-body); font-weight: 400; line-height: 0.9; letter-spacing: -0.04em;">Aa</div>
+        <div class="fam-role">Body · Sans</div>
+        <div class="fam-name">Inter</div>
+        <div class="fam-desc">The chassis. Body copy, UI, metadata, chips, buttons, captions. Chosen for how cleanly it sits next to a light serif at small sizes.</div>
+        <div class="fam-weights">
+          <span>400 reg</span><span>500 med</span><span>600 semi</span><span>700 bold</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 2 · SCALE ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Scale.</h2>
+      <div class="sub">Nine sizes on a 1.25 ratio (major third). Click any row to copy its token. Tokens prefix with <code style="font-family:var(--font-mono);font-size:11px;">--t-</code>.</div>
+    </div>
+    <div id="scale-rows" class="scale-rows"></div>
+  </div>
+
+  <!-- ─── 3 · HIERARCHY DEMO ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Hierarchy in use.</h2>
+      <div class="sub">A real recipe header showing how the scale composes. Every piece of text here is using a named token from the scale above.</div>
+    </div>
+    <div class="hier-card">
+      <div class="hier-img"></div>
+      <div class="hier-body">
+        <div class="h-eyebrow">Dessert · 45 min · Ramadan</div>
+        <div class="h-title">sticky date<br/>cake with<br/><em>brown butter</em>.</div>
+        <div class="h-lede">A one-bowl pudding that only pretends to be complicated. The brown butter does most of the heavy lifting; you're really just keeping an eye on the pan.</div>
+
+        <div class="h-meta">
+          <div class="mi"><div class="lbl">Time</div><div class="val">45 min</div></div>
+          <div class="mi"><div class="lbl">Serves</div><div class="val">8</div></div>
+          <div class="mi"><div class="lbl">Level</div><div class="val">Easy</div></div>
+        </div>
+
+        <div class="h-section">Ingredients.</div>
+        <div class="h-body">
+          Medjool dates, pitted and roughly chopped. Boiling water poured over them until they sigh. Baking soda — always the cheap trick — to help the dates slump into paste. Brown butter, cooled just enough to still pour. Muscovado sugar, eggs, flour, a big pinch of salt, and one vanilla bean if the pantry is feeling generous.
+        </div>
+        <div class="h-caption">Makes one 8-inch cake. Keeps, loosely wrapped, for three days.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 4 · LIVE SPECIMEN ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Try it.</h2>
+      <div class="sub">Click any line below and type. Every style is contenteditable so you can stress-test your own copy.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-row">
+        <div class="spec-label"><div class="n">display</div><div class="s">84 / 300 / -0.02em</div></div>
+        <div class="spec-text" contenteditable="true" style="font-family: var(--font-display); font-size: var(--t-display); font-weight: 300; letter-spacing: -0.02em; line-height: 0.95;">turning food into art.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label"><div class="n">h1</div><div class="s">56 / 300 / -0.02em</div></div>
+        <div class="spec-text" contenteditable="true" style="font-family: var(--font-display); font-size: var(--t-h1); font-weight: 300; letter-spacing: -0.02em; line-height: 1;">sticky date cake.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label"><div class="n">h2</div><div class="s">40 / 400 / -0.02em</div></div>
+        <div class="spec-text" contenteditable="true" style="font-family: var(--font-display); font-size: var(--t-h2); font-weight: 400; letter-spacing: -0.02em; line-height: 1.05;">Ingredients.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label"><div class="n">h3</div><div class="s">26 / 400 / -0.01em</div></div>
+        <div class="spec-text" contenteditable="true" style="font-family: var(--font-display); font-size: var(--t-h3); font-weight: 400; letter-spacing: -0.01em; line-height: 1.15;">Brown the butter first.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label"><div class="n">h4</div><div class="s">20 / 500 / 0</div></div>
+        <div class="spec-text" contenteditable="true" style="font-size: var(--t-h4); font-weight: 500; line-height: 1.35;">Step one: chop the dates.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label"><div class="n">body</div><div class="s">16 / 400 / 1.65</div></div>
+        <div class="spec-text" contenteditable="true" style="font-size: var(--t-body); font-weight: 400; line-height: 1.65;">Pour boiling water over the dates and let them sit for ten minutes while you brown the butter. The dates should look slumped and glossy; the butter should smell like toasted hazelnuts.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label"><div class="n">small</div><div class="s">14 / 400 / 1.55</div></div>
+        <div class="spec-text" contenteditable="true" style="font-size: var(--t-small); font-weight: 400; line-height: 1.55; color: var(--walnut);">Tip — if you don't have muscovado, any dark brown sugar will do, but the molasses note will be softer.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label"><div class="n">caption</div><div class="s">13 / 400 / italic</div></div>
+        <div class="spec-text" contenteditable="true" style="font-size: var(--t-caption); font-weight: 400; font-style: italic; color: var(--muted); line-height: 1.5;">Photograph by Mariyum. Styled on a linen napkin that has seen better days.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label"><div class="n">eyebrow</div><div class="s">11 / 600 / 0.18em upper</div></div>
+        <div class="spec-text" contenteditable="true" style="font-size: var(--t-eyebrow); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--walnut);">dessert · 45 min · ramadan</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 5 · RULES ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Rules.</h2>
+      <div class="sub">The invisible rules that make type feel intentional. Break them only when you mean to.</div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="rnum">01</div>
+        <div class="rhead">Serif above 20, sans below.</div>
+        <div class="rtext">Cormorant's brackets need room. At &lt;20px, switch to Inter so letterforms stay crisp. Use <code>var(--t-h4)</code> as the cutoff.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rnum">02</div>
+        <div class="rhead">Display weight = 300.</div>
+        <div class="rtext">Large serif text (40px+) always uses weight 300. The generous sizing gives weight; a bolder cut looks clumsy next to the script accent.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rnum">03</div>
+        <div class="rhead">Tighten as you grow.</div>
+        <div class="rtext">Negative letter-spacing on headlines: −0.01em at h3, −0.02em at h2+, −0.025em on display. Body stays at 0.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rnum">04</div>
+        <div class="rhead">Line-height shrinks with size.</div>
+        <div class="rtext">Display: 0.95. H1–H2: 1.05. H3–H4: 1.15–1.35. Body: 1.65. Caption/eyebrow: 1.5.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rnum">05</div>
+        <div class="rhead">Measure 45–75 characters.</div>
+        <div class="rtext">Body paragraphs cap at ~60ch. Anything wider is hard to read; anything narrower breaks rhythm. Use <code>max-width: 56ch</code>.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rnum">06</div>
+        <div class="rhead">Script sparingly.</div>
+        <div class="rtext">Pinyon appears once, maybe twice per page. It's a signature — the moment it repeats, it stops feeling special.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 6 · DO / DON'T ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Do &amp; don't.</h2>
+      <div class="sub">The fastest way to break the system is to mix registers. Here's what to watch for.</div>
+    </div>
+    <div class="dd-grid">
+      <div class="dd-card good">
+        <div class="dd-tag">Do</div>
+        <div class="dd-demo">
+          <div style="font-family: var(--font-display); font-size: 42px; font-weight: 300; letter-spacing: -0.02em; line-height: 1; margin-bottom: 12px;">brown butter cookies.</div>
+          <div style="font-size: 15px; line-height: 1.6; color: var(--walnut); max-width: 50ch;">Crisp at the edges, chewy in the middle, and almost too fragrant to be polite.</div>
+        </div>
+        <div class="dd-note">Serif headline (300, tight) + Inter lede (400, comfortable). Clear hierarchy, appropriate weights.</div>
+      </div>
+
+      <div class="dd-card bad">
+        <div class="dd-tag">Don't</div>
+        <div class="dd-demo">
+          <div style="font-family: var(--font-display); font-size: 42px; font-weight: 600; letter-spacing: 0; line-height: 1.2; margin-bottom: 12px;">brown butter cookies.</div>
+          <div style="font-family: var(--font-display); font-size: 15px; line-height: 1.4; color: var(--walnut); max-width: 30ch;">Crisp at the edges, chewy in the middle, and almost too fragrant to be polite.</div>
+        </div>
+        <div class="dd-note">Display serif in bold 600 (too heavy for Cormorant) + serif body at 15px (legibility trap) + too-narrow measure.</div>
+      </div>
+
+      <div class="dd-card good">
+        <div class="dd-tag">Do</div>
+        <div class="dd-demo">
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tomato); margin-bottom: 8px;">Dessert · 45 min</div>
+          <div style="font-family: var(--font-display); font-size: 38px; font-weight: 300; letter-spacing: -0.02em; line-height: 1;">sticky date <em style="font-family: var(--font-script); font-style: normal; color: var(--mauve);">cake</em>.</div>
+        </div>
+        <div class="dd-note">Script used as a single accent word inside a serif headline. One flourish, not a shower of them.</div>
+      </div>
+
+      <div class="dd-card bad">
+        <div class="dd-tag">Don't</div>
+        <div class="dd-demo">
+          <div style="font-family: var(--font-script); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tomato); margin-bottom: 8px;">Dessert · 45 min</div>
+          <div style="font-family: var(--font-script); font-size: 42px; color: var(--mauve); line-height: 0.9;">sticky date cake.</div>
+        </div>
+        <div class="dd-note">Script used for eyebrow + full headline. Illegible, oversweet, and the brand loses its signature moment.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 7 · LINE LENGTH ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Measure.</h2>
+      <div class="sub">Body copy is set in Inter at 16px — here it is at three widths so you can see the sweet spot.</div>
+    </div>
+    <div class="ll-grid">
+      <div class="ll-card">
+        <div class="ll-caption">too narrow · ~28ch</div>
+        <div class="ll-text" style="max-width: 28ch;">Pour boiling water over the dates and let them sit for ten minutes while you brown the butter.</div>
+      </div>
+      <div class="ll-card good">
+        <div class="ll-caption">just right · 56ch · default</div>
+        <div class="ll-text" style="max-width: 56ch;">Pour boiling water over the dates and let them sit for ten minutes while you brown the butter. The dates should look slumped and glossy; the butter should smell like toasted hazelnuts.</div>
+      </div>
+      <div class="ll-card">
+        <div class="ll-caption">too wide · ~90ch</div>
+        <div class="ll-text" style="max-width: 90ch;">Pour boiling water over the dates and let them sit for ten minutes while you brown the butter. The dates should look slumped and glossy; the butter should smell like toasted hazelnuts. If you're using a light pan, you can watch the milk solids turn the color of caramel; in a dark one, smell is your only signal.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast" class="toast">copied</div>
+
+<script src="typography.js"></script>
+
+</body>
+</html>

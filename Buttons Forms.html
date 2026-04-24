@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>mxriyum — Buttons & Forms</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Pinyon+Script&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #2E2621; --paper: #FBF8F3; --cream: #F5EFE7;
+    --mauve: #B69B8E; --walnut: #8A6F5F; --sage: #8A9579;
+    --tomato: #C85943; --butter: #E8B94D; --berry: #8A3A4E;
+    --rule: rgba(46,38,33,0.12); --muted: rgba(46,38,33,0.55);
+    --mauve-700: #7F6558; --mauve-100: #E4D9D2;
+    --sp-2: 4px; --sp-3: 8px; --sp-4: 12px; --sp-5: 16px; --sp-6: 20px; --sp-7: 24px; --sp-8: 32px; --sp-9: 40px; --sp-10: 48px; --sp-11: 64px;
+    --r-sm: 4px; --r-md: 8px; --r-lg: 12px; --r-pill: 999px;
+    --e-1: 0 1px 2px rgba(46,38,33,0.06);
+    --e-2: 0 2px 8px rgba(46,38,33,0.06), 0 1px 2px rgba(46,38,33,0.04);
+    --e-3: 0 6px 20px rgba(46,38,33,0.08), 0 2px 6px rgba(46,38,33,0.05);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: 'Inter', -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1320px; margin: 0 auto; padding: 72px 56px 120px; }
+
+  .logo { font-family: 'Cormorant Garamond', serif; font-weight: 400; display: inline-flex; align-items: baseline; color: var(--mauve); line-height: 1; }
+  .logo .yum { font-family: 'Pinyon Script', cursive; font-size: 1.15em; margin-left: -0.03em; transform: translateY(0.08em); display: inline-block; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--walnut); }
+  .display { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(48px, 7vw, 84px); letter-spacing: -0.02em; line-height: 0.95; }
+
+  .page-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 48px; margin-bottom: 72px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+  .page-header .meta { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 400px; }
+  .page-header .meta strong { color: var(--ink); font-weight: 600; }
+
+  .section { margin-bottom: 96px; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+  .section-head h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 42px; margin: 0; letter-spacing: -0.02em; }
+  .section-head .sub { color: var(--muted); font-size: 14px; max-width: 420px; text-align: right; line-height: 1.5; }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    font-family: 'Inter', sans-serif; font-weight: 500;
+    border-radius: var(--r-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: var(--sp-3);
+    transition: all 0.15s ease;
+    font-size: 14px; padding: 10px 18px;
+    letter-spacing: 0.005em;
+    line-height: 1;
+  }
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  .btn.sm { font-size: 12px; padding: 7px 13px; gap: var(--sp-2); }
+  .btn.sm svg { width: 14px; height: 14px; }
+  .btn.lg { font-size: 15px; padding: 14px 24px; gap: var(--sp-3); }
+  .btn.lg svg { width: 18px; height: 18px; }
+
+  .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn.primary:hover { background: #1C1613; border-color: #1C1613; }
+  .btn.secondary { background: var(--mauve); color: #fff; border-color: var(--mauve); }
+  .btn.secondary:hover { background: var(--mauve-700); border-color: var(--mauve-700); }
+  .btn.outline { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .btn.outline:hover { background: var(--ink); color: var(--paper); }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: transparent; }
+  .btn.ghost:hover { background: var(--cream); }
+  .btn.tomato { background: var(--tomato); color: #fff; border-color: var(--tomato); }
+  .btn.tomato:hover { background: #A64330; border-color: #A64330; }
+  .btn.pill { border-radius: var(--r-pill); }
+
+  .btn:disabled, .btn.disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn.loading { position: relative; color: transparent !important; }
+  .btn.loading::after {
+    content: ''; position: absolute; width: 14px; height: 14px;
+    border: 1.5px solid currentColor; border-top-color: transparent;
+    border-radius: 50%; animation: spin 0.7s linear infinite;
+    color: var(--paper);
+  }
+  .btn.outline.loading::after, .btn.ghost.loading::after { color: var(--ink); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .btn-icon {
+    width: 38px; height: 38px; padding: 0; border-radius: var(--r-md);
+  }
+  .btn-icon.sm { width: 30px; height: 30px; }
+  .btn-icon.lg { width: 46px; height: 46px; }
+  .btn-icon.circle { border-radius: 50%; }
+
+  /* Grids */
+  .btn-row { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
+  .btn-demo-grid {
+    background: #fff; border: 1px solid var(--rule); border-radius: var(--r-lg);
+    padding: var(--sp-9);
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: var(--sp-8) var(--sp-9);
+    align-items: center;
+  }
+  .btn-demo-grid .lbl {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.02em;
+  }
+  .btn-demo-grid .lbl b { display: block; color: var(--ink); font-weight: 500; font-family: 'Inter', sans-serif; font-size: 13px; margin-bottom: 2px; }
+
+  /* ─── FORMS ─── */
+  .field {
+    display: flex; flex-direction: column; gap: var(--sp-3);
+  }
+  .field > label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--walnut);
+  }
+  .field .hint { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .field .err  { font-size: 12px; color: var(--tomato); line-height: 1.4; }
+
+  .input, .textarea, .select {
+    font-family: 'Inter', sans-serif; font-size: 14px;
+    padding: 12px 16px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    color: var(--ink);
+    width: 100%;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    line-height: 1.4;
+  }
+  .input:hover, .textarea:hover, .select:hover { border-color: var(--walnut); }
+  .input:focus, .textarea:focus, .select:focus {
+    outline: none; border-color: var(--ink); background: #fff;
+    box-shadow: 0 0 0 3px rgba(182,155,142,0.22);
+  }
+  .input::placeholder, .textarea::placeholder { color: var(--muted); }
+  .textarea { resize: vertical; min-height: 100px; font-family: 'Inter', sans-serif; line-height: 1.55; }
+  .input.error { border-color: var(--tomato); }
+
+  .select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238A6F5F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+
+  .search-field {
+    position: relative;
+  }
+  .search-field .icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--walnut); pointer-events: none;
+  }
+  .search-field .input { padding-left: 42px; border-radius: var(--r-pill); }
+  .search-field .clear { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border: none; background: var(--cream); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--walnut); }
+
+  /* Checkbox / Radio */
+  .check, .radio {
+    display: inline-flex; align-items: center; gap: var(--sp-3);
+    cursor: pointer; font-size: 14px; color: var(--ink);
+    user-select: none;
+  }
+  .check input, .radio input { position: absolute; opacity: 0; pointer-events: none; }
+  .check .box, .radio .dot {
+    width: 18px; height: 18px; border: 1.5px solid var(--walnut);
+    background: var(--paper);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all 0.12s;
+    flex-shrink: 0;
+  }
+  .check .box { border-radius: 4px; }
+  .radio .dot { border-radius: 50%; }
+  .check input:checked + .box { background: var(--ink); border-color: var(--ink); }
+  .check input:checked + .box::after { content: ''; width: 5px; height: 9px; border: solid var(--paper); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg) translate(-1px, -1px); }
+  .radio input:checked + .dot { border-color: var(--ink); }
+  .radio input:checked + .dot::after { content: ''; width: 10px; height: 10px; background: var(--ink); border-radius: 50%; }
+
+  /* Toggle */
+  .toggle { display: inline-flex; align-items: center; gap: var(--sp-3); cursor: pointer; font-size: 14px; }
+  .toggle input { position: absolute; opacity: 0; }
+  .toggle .track { width: 38px; height: 22px; background: var(--rule); border-radius: 999px; position: relative; transition: background 0.2s; flex-shrink: 0; }
+  .toggle .track::after { content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: var(--paper); border-radius: 50%; transition: transform 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+  .toggle input:checked + .track { background: var(--ink); }
+  .toggle input:checked + .track::after { transform: translateX(16px); }
+
+  /* Demo cards */
+  .form-demo {
+    background: #fff; border: 1px solid var(--rule); border-radius: var(--r-lg);
+    padding: var(--sp-9);
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
+  .form-grid-full { grid-column: 1 / -1; }
+
+  /* Newsletter example */
+  .newsletter {
+    background: var(--cream);
+    padding: var(--sp-11);
+    border-radius: var(--r-xl, 20px);
+    text-align: center;
+  }
+  .newsletter h3 { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; letter-spacing: -0.02em; line-height: 1; margin: 0 0 var(--sp-4); }
+  .newsletter h3 em { font-family: 'Pinyon Script', cursive; font-style: normal; color: var(--mauve); }
+  .newsletter p { font-size: 14px; color: var(--walnut); line-height: 1.55; max-width: 44ch; margin: 0 auto var(--sp-8); }
+  .newsletter .ctrl { display: flex; gap: var(--sp-3); max-width: 480px; margin: 0 auto; }
+  .newsletter .input { background: #fff; border-color: transparent; }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--paper); padding: 12px 20px; border-radius: 8px; font-size: 13px; font-weight: 500; font-family: 'JetBrains Mono', monospace; opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none; z-index: 100; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow" style="margin-bottom: 14px;">Brand System · 06</div>
+      <span class="logo" style="font-size: 56px;">mari<span class="yum">yum</span></span>
+      <div class="display" style="margin-top: 18px;">Buttons &amp; forms.</div>
+    </div>
+    <div class="meta">
+      <strong>Five button variants, three sizes, and the complete form kit.</strong> Every control uses the tokens from color, type, and scaffolding — so adjusting a base token ripples through everywhere.
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Buttons.</h2>
+      <div class="sub">Primary (ink) for confident actions, secondary (mauve) for brand moments, outline &amp; ghost for lower emphasis, tomato for savory CTAs.</div>
+    </div>
+    <div class="btn-demo-grid">
+      <div class="lbl"><b>Primary</b>ink · confident</div>
+      <div class="btn-row">
+        <button class="btn primary sm">Save recipe</button>
+        <button class="btn primary">Save recipe</button>
+        <button class="btn primary lg">Save recipe</button>
+        <button class="btn primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg>Save</button>
+        <button class="btn primary pill">Pill shape</button>
+      </div>
+
+      <div class="lbl"><b>Secondary</b>mauve · brand</div>
+      <div class="btn-row">
+        <button class="btn secondary sm">Read more</button>
+        <button class="btn secondary">Read more</button>
+        <button class="btn secondary lg">Read more</button>
+        <button class="btn secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>Continue</button>
+      </div>
+
+      <div class="lbl"><b>Outline</b>quiet presence</div>
+      <div class="btn-row">
+        <button class="btn outline sm">Print</button>
+        <button class="btn outline">Print recipe</button>
+        <button class="btn outline lg">Print recipe</button>
+        <button class="btn outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8 11l8-4M8 13l8 4"/></svg>Share</button>
+      </div>
+
+      <div class="lbl"><b>Ghost</b>minimal · inline</div>
+      <div class="btn-row">
+        <button class="btn ghost sm">Cancel</button>
+        <button class="btn ghost">Cancel</button>
+        <button class="btn ghost lg">Cancel</button>
+      </div>
+
+      <div class="lbl"><b>Tomato</b>warm · emphasis</div>
+      <div class="btn-row">
+        <button class="btn tomato">Preorder cookbook</button>
+        <button class="btn tomato pill">Preorder</button>
+      </div>
+
+      <div class="lbl"><b>Icon-only</b>compact actions</div>
+      <div class="btn-row">
+        <button class="btn outline btn-icon sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg></button>
+        <button class="btn outline btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg></button>
+        <button class="btn outline btn-icon lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg></button>
+        <button class="btn outline btn-icon circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+        <button class="btn primary btn-icon circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+      </div>
+
+      <div class="lbl"><b>States</b>hover, loading, disabled</div>
+      <div class="btn-row">
+        <button class="btn primary">Default</button>
+        <button class="btn primary loading">Loading</button>
+        <button class="btn primary" disabled>Disabled</button>
+        <button class="btn outline loading">Saving…</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMS -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Form controls.</h2>
+      <div class="sub">Inputs sit on the paper background with a hairline border; they warm up on hover and get a mauve glow on focus.</div>
+    </div>
+    <div class="form-demo">
+      <div class="form-grid">
+        <div class="field">
+          <label>Name</label>
+          <input class="input" placeholder="Your name" value="Mariyum"/>
+          <div class="hint">How it'll appear on comments and saved recipes.</div>
+        </div>
+
+        <div class="field">
+          <label>Email</label>
+          <input class="input" type="email" placeholder="you@domain.com"/>
+        </div>
+
+        <div class="field">
+          <label>Favorite category</label>
+          <select class="select">
+            <option>Breakfast</option><option>Lunch</option><option>Dinner</option>
+            <option>Appetizers</option><option>Breads</option><option selected>Dessert</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Error state</label>
+          <input class="input error" placeholder="Invalid email" value="not-an-email"/>
+          <div class="err">Please enter a valid email address.</div>
+        </div>
+
+        <div class="field form-grid-full">
+          <label>Search</label>
+          <div class="search-field">
+            <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></span>
+            <input class="input" placeholder="Search 240+ recipes…" value="sticky date cake"/>
+            <button class="clear"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          </div>
+        </div>
+
+        <div class="field form-grid-full">
+          <label>Comment</label>
+          <textarea class="textarea" placeholder="Tried this last weekend — the brown butter step was a revelation…"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Dietary notes</label>
+          <div style="display:flex; flex-direction:column; gap: var(--sp-4);">
+            <label class="check"><input type="checkbox" checked/><span class="box"></span>Vegetarian</label>
+            <label class="check"><input type="checkbox"/><span class="box"></span>Gluten-free</label>
+            <label class="check"><input type="checkbox" checked/><span class="box"></span>Dairy-free</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Serving size</label>
+          <div style="display:flex; flex-direction:column; gap: var(--sp-4);">
+            <label class="radio"><input type="radio" name="srv"/><span class="dot"></span>Half the recipe</label>
+            <label class="radio"><input type="radio" name="srv" checked/><span class="dot"></span>As written</label>
+            <label class="radio"><input type="radio" name="srv"/><span class="dot"></span>Double it</label>
+          </div>
+        </div>
+
+        <div class="field form-grid-full" style="flex-direction:row; justify-content:space-between; align-items:center; padding-top:var(--sp-4); border-top:1px solid var(--rule);">
+          <label class="toggle">
+            <input type="checkbox" checked/><span class="track"></span>
+            <span>Email me weekly recipes</span>
+          </label>
+          <div style="display:flex; gap:var(--sp-3);">
+            <button class="btn ghost">Cancel</button>
+            <button class="btn primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER CTA -->
+  <div class="section">
+    <div class="section-head">
+      <h2>In context.</h2>
+      <div class="sub">Newsletter signup — the archetypal form/button pairing for the site.</div>
+    </div>
+    <div class="newsletter">
+      <h3>new recipes, <em>weekly</em>.</h3>
+      <p>One email, every Sunday. Whatever's been in the kitchen that week, plus a note about what's in season.</p>
+      <div class="ctrl">
+        <input class="input" placeholder="your@email.com"/>
+        <button class="btn primary lg" style="flex-shrink:0;">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast" class="toast">copied</div>
+
+</body>
+</html>

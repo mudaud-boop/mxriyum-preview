@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>mxriyum — Spacing, Radii, Elevation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #2E2621;
+    --paper: #FBF8F3;
+    --cream: #F5EFE7;
+    --mauve: #B69B8E;
+    --walnut: #8A6F5F;
+    --sage: #8A9579;
+    --tomato: #C85943;
+    --butter: #E8B94D;
+    --berry: #8A3A4E;
+    --rule: rgba(46,38,33,0.12);
+    --muted: rgba(46,38,33,0.55);
+
+    /* ─── SPACING · 4-based ─── */
+    --sp-0: 0;
+    --sp-1: 2px;
+    --sp-2: 4px;
+    --sp-3: 8px;
+    --sp-4: 12px;
+    --sp-5: 16px;
+    --sp-6: 20px;
+    --sp-7: 24px;
+    --sp-8: 32px;
+    --sp-9: 40px;
+    --sp-10: 48px;
+    --sp-11: 64px;
+    --sp-12: 80px;
+    --sp-13: 96px;
+    --sp-14: 120px;
+
+    /* ─── RADII ─── */
+    --r-none: 0;
+    --r-xs: 2px;
+    --r-sm: 4px;
+    --r-md: 8px;
+    --r-lg: 12px;
+    --r-xl: 20px;
+    --r-pill: 999px;
+    --r-circle: 50%;
+
+    /* ─── ELEVATION ─── */
+    --e-0: none;
+    --e-1: 0 1px 2px rgba(46,38,33,0.06);
+    --e-2: 0 2px 8px rgba(46,38,33,0.06), 0 1px 2px rgba(46,38,33,0.04);
+    --e-3: 0 6px 20px rgba(46,38,33,0.08), 0 2px 6px rgba(46,38,33,0.05);
+    --e-4: 0 16px 40px rgba(46,38,33,0.12), 0 4px 12px rgba(46,38,33,0.06);
+    --e-5: 0 32px 72px rgba(46,38,33,0.18), 0 8px 20px rgba(46,38,33,0.08);
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper); color: var(--ink);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1320px; margin: 0 auto; padding: 72px 56px 120px; }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    display: inline-flex; align-items: baseline; color: var(--mauve); line-height: 1;
+  }
+  .logo .yum {
+    font-family: 'Pinyon Script', cursive; font-size: 1.15em;
+    margin-left: -0.03em; transform: translateY(0.08em); display: inline-block;
+  }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 600; color: var(--walnut);
+  }
+  .display {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(48px, 7vw, 84px); letter-spacing: -0.02em;
+    line-height: 0.95; color: var(--ink);
+  }
+
+  .page-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 48px; margin-bottom: 72px;
+    padding-bottom: 32px; border-bottom: 1px solid var(--rule);
+  }
+  .page-header .meta { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 400px; }
+  .page-header .meta strong { color: var(--ink); font-weight: 600; }
+
+  .section { margin-bottom: 96px; }
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; margin-bottom: 28px;
+  }
+  .section-head h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 42px; margin: 0; letter-spacing: -0.02em; }
+  .section-head .sub { color: var(--muted); font-size: 14px; max-width: 440px; text-align: right; line-height: 1.5; }
+
+  /* ─── SPACING ─── */
+  .sp-table {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    overflow: hidden;
+  }
+  .sp-row {
+    display: grid;
+    grid-template-columns: 90px 90px 1fr 200px;
+    gap: 24px; align-items: center;
+    padding: 14px 24px;
+    border-top: 1px solid var(--rule);
+    transition: background 0.12s;
+    cursor: pointer;
+  }
+  .sp-row:first-child { border-top: none; }
+  .sp-row:hover { background: var(--cream); }
+  .sp-row .token { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink); font-weight: 500; }
+  .sp-row .px { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .sp-row .bar-wrap { height: 32px; display: flex; align-items: center; }
+  .sp-row .bar { height: 14px; background: var(--mauve); border-radius: 2px; min-width: 1px; }
+  .sp-row .use { font-size: 11px; color: var(--muted); line-height: 1.4; text-align: right; }
+
+  /* ─── RADII ─── */
+  .radii-grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .radius-tile {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 28px 24px 20px;
+    display: flex; flex-direction: column; gap: 18px;
+    cursor: pointer;
+    transition: transform 0.12s;
+  }
+  .radius-tile:hover { transform: translateY(-2px); }
+  .radius-shape {
+    height: 90px; background: var(--mauve);
+    display: flex; align-items: flex-end; justify-content: flex-start;
+    padding: 10px; color: rgba(255,255,255,0.7);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  }
+  .radius-meta { display: flex; justify-content: space-between; align-items: baseline; }
+  .radius-token { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink); font-weight: 500; }
+  .radius-val { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+  .radius-use { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* ─── ELEVATION ─── */
+  .elev-grid {
+    display: grid; gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 60px 40px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+  }
+  .elev-tile {
+    background: #fff;
+    border-radius: 8px;
+    aspect-ratio: 1;
+    padding: 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .elev-tile:hover { transform: translateY(-3px); }
+  .elev-tile.e0 { box-shadow: var(--e-0); border: 1px solid var(--rule); }
+  .elev-tile.e1 { box-shadow: var(--e-1); }
+  .elev-tile.e2 { box-shadow: var(--e-2); }
+  .elev-tile.e3 { box-shadow: var(--e-3); }
+  .elev-tile.e4 { box-shadow: var(--e-4); }
+  .elev-tile.e5 { box-shadow: var(--e-5); }
+  .elev-tile .etoken { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; }
+  .elev-tile .euse { font-size: 10px; color: var(--muted); line-height: 1.4; }
+  .elev-tile .elabel { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; }
+
+  /* ─── IN CONTEXT — recipe card ─── */
+  .ctx-wrap {
+    background: var(--cream);
+    padding: 64px;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--sp-9);
+  }
+  .ctx-card {
+    background: #fff;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--e-2);
+    display: flex; flex-direction: column;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .ctx-card:hover { transform: translateY(-2px); box-shadow: var(--e-3); }
+  .ctx-img {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--mauve), var(--walnut));
+    position: relative;
+  }
+  .ctx-img.b { background: linear-gradient(135deg, var(--sage), #6A7560); }
+  .ctx-img.c { background: linear-gradient(135deg, var(--berry), #5C263A); }
+  .ctx-img .chip {
+    position: absolute; top: var(--sp-5); left: var(--sp-5);
+    background: rgba(255,255,255,0.92);
+    color: var(--ink);
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: var(--sp-2) var(--sp-4);
+    border-radius: var(--r-pill);
+  }
+  .ctx-body { padding: var(--sp-7); display: flex; flex-direction: column; gap: var(--sp-4); }
+  .ctx-eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--walnut); font-weight: 600; }
+  .ctx-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; letter-spacing: -0.01em; line-height: 1.1; color: var(--ink); margin: 0; }
+  .ctx-body p { font-size: 13px; color: var(--muted); line-height: 1.55; margin: 0; }
+  .ctx-meta {
+    display: flex; gap: var(--sp-5);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--rule);
+    margin-top: var(--sp-3);
+    font-size: 11px; color: var(--walnut); font-weight: 500;
+  }
+
+  /* annotation pointers over the card */
+  .ctx-annot-card { position: relative; }
+  .ctx-annot {
+    position: absolute; background: var(--ink); color: var(--paper);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    padding: 4px 8px; border-radius: 3px; white-space: nowrap;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .ctx-wrap:hover .ctx-annot { opacity: 1; }
+  .ctx-annot::before {
+    content: ''; position: absolute; width: 8px; height: 8px; background: var(--ink);
+    transform: rotate(45deg);
+  }
+  .a-radius { top: -10px; right: 10px; }
+  .a-radius::before { bottom: -4px; left: 14px; }
+  .a-pad    { top: 50%; right: -80px; }
+  .a-pad::before { left: -4px; top: 9px; }
+  .a-shadow { bottom: -10px; left: 20px; }
+  .a-shadow::before { top: -4px; left: 14px; }
+
+  /* ─── PRINCIPLES ─── */
+  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .principle {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 26px 26px 24px;
+  }
+  .principle .pn { font-family: 'Cormorant Garamond', serif; font-size: 30px; letter-spacing: -0.01em; margin-bottom: 8px; font-weight: 400; }
+  .principle .pnum { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--mauve); line-height: 1; margin-bottom: 10px; }
+  .principle .pd { font-size: 13px; line-height: 1.6; color: var(--walnut); }
+  .principle code { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--cream); padding: 2px 6px; border-radius: 3px; }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 32px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: var(--paper);
+    padding: 12px 20px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; font-family: 'JetBrains Mono', monospace;
+    opacity: 0; transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none; z-index: 100;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ─── HEADER ─── -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow" style="margin-bottom: 14px;">Brand System · 05</div>
+      <span class="logo" style="font-size: 56px;">mari<span class="yum">yum</span></span>
+      <div class="display" style="margin-top: 18px;">Scaffolding.</div>
+    </div>
+    <div class="meta">
+      <strong>Spacing, radii, elevation.</strong> The invisible rules. A 4-based spacing scale, a graduated radius set, and five elevation levels. Every component built from here on references these tokens — never magic numbers.
+    </div>
+  </div>
+
+  <!-- ─── 1 · PRINCIPLES ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Principles.</h2>
+      <div class="sub">Three rules every component follows. Break them on purpose, not by accident.</div>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <div class="pnum">01</div>
+        <div class="pn">Spacing is rhythm.</div>
+        <div class="pd">All gaps, padding, and offsets come from a 4-based scale. Two sibling elements at <code>--sp-5</code> + <code>--sp-7</code> feel calm together; <code>13px + 19px</code> never does.</div>
+      </div>
+      <div class="principle">
+        <div class="pnum">02</div>
+        <div class="pn">Radii are soft.</div>
+        <div class="pd">Nothing is truly sharp. Even "none" is a choice — but most surfaces use <code>--r-md</code> or <code>--r-lg</code>. Pills for tags, circles for avatars.</div>
+      </div>
+      <div class="principle">
+        <div class="pnum">03</div>
+        <div class="pn">Shadows are warm.</div>
+        <div class="pd">Shadows use <code>rgba(46, 38, 33, …)</code> — the ink color, not black. Subtly warm even at low opacity. Five levels, not a gradient.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 2 · SPACING ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Spacing.</h2>
+      <div class="sub">Fifteen values on a 4-based scale. Bars scale with actual pixel value. Click to copy.</div>
+    </div>
+    <div id="sp-table" class="sp-table"></div>
+  </div>
+
+  <!-- ─── 3 · RADII ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Radii.</h2>
+      <div class="sub">Eight radius tokens from none to pill. Each shape below uses its token.</div>
+    </div>
+    <div id="radii-grid" class="radii-grid"></div>
+  </div>
+
+  <!-- ─── 4 · ELEVATION ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Elevation.</h2>
+      <div class="sub">Six levels — flat, hairline, soft, lifted, floating, overlay. Every shadow is warm ink, never black.</div>
+    </div>
+    <div class="elev-grid">
+      <div class="elev-tile e0" data-token="--e-0"><div class="etoken">--e-0</div><div class="elabel">flat</div><div class="euse">inline text, diagrams</div></div>
+      <div class="elev-tile e1" data-token="--e-1"><div class="etoken">--e-1</div><div class="elabel">hairline</div><div class="euse">subtle surface lift</div></div>
+      <div class="elev-tile e2" data-token="--e-2"><div class="etoken">--e-2</div><div class="elabel">soft</div><div class="euse">cards, default</div></div>
+      <div class="elev-tile e3" data-token="--e-3"><div class="etoken">--e-3</div><div class="elabel">lifted</div><div class="euse">hover, popovers</div></div>
+      <div class="elev-tile e4" data-token="--e-4"><div class="etoken">--e-4</div><div class="elabel">floating</div><div class="euse">dropdowns, tooltips</div></div>
+      <div class="elev-tile e5" data-token="--e-5"><div class="etoken">--e-5</div><div class="elabel">overlay</div><div class="euse">modals, sheets</div></div>
+    </div>
+  </div>
+
+  <!-- ─── 5 · IN CONTEXT ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>In context.</h2>
+      <div class="sub">Three recipe cards showing every token working together. Hover to reveal the exact tokens used.</div>
+    </div>
+    <div class="ctx-wrap">
+      <div class="ctx-card ctx-annot-card">
+        <div class="ctx-img"><span class="chip">Dessert</span></div>
+        <div class="ctx-body">
+          <div class="ctx-eyebrow">45 min · serves 8</div>
+          <h3 class="ctx-title">Sticky date cake with brown butter.</h3>
+          <p>A one-bowl pudding that only pretends to be complicated.</p>
+          <div class="ctx-meta"><span>Easy</span><span>One bowl</span><span>Make ahead</span></div>
+        </div>
+        <div class="ctx-annot a-radius">r: --r-lg (12)</div>
+        <div class="ctx-annot a-pad">pad: --sp-7 (24)</div>
+        <div class="ctx-annot a-shadow">shadow: --e-2</div>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-img b"><span class="chip">Lunch</span></div>
+        <div class="ctx-body">
+          <div class="ctx-eyebrow">30 min · serves 4</div>
+          <h3 class="ctx-title">Herby green bean salad with feta.</h3>
+          <p>Bright, blistered, and unfussy — a side that eats like a main.</p>
+          <div class="ctx-meta"><span>Easy</span><span>Gluten-free</span><span>Vegetarian</span></div>
+        </div>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-img c"><span class="chip">Dessert</span></div>
+        <div class="ctx-body">
+          <div class="ctx-eyebrow">2 hr · serves 10</div>
+          <h3 class="ctx-title">Berry cobbler with shortcake top.</h3>
+          <p>Summer fruit under a golden, buttery shortcake lid.</p>
+          <div class="ctx-meta"><span>Medium</span><span>Seasonal</span><span>Crowd-pleaser</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast" class="toast">copied</div>
+
+<script src="scaffolding.js"></script>
+
+</body>
+</html>

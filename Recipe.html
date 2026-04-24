@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sticky date cake — mxriyum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Caveat:wght@400;500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css" />
+
+<style>
+  .recipe-wrap { max-width: 820px; margin: 0 auto; padding: 56px 40px 80px; }
+  .recipe-wrap .breadcrumbs { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 40px; }
+  .recipe-wrap .breadcrumbs a { color: var(--muted); text-decoration: none; }
+  .recipe-wrap .breadcrumbs a:hover { color: var(--ink); }
+
+  .recipe-wrap .cat-label { display: block; text-align: center; margin-bottom: 18px; }
+  .recipe-wrap h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(48px, 6.5vw, 84px); letter-spacing: -0.025em; line-height: 0.98; text-align: center; margin: 0; }
+  .recipe-wrap h1 em { font-family: 'Pinyon Script', cursive; font-style: normal; color: var(--mauve); }
+  .recipe-wrap .byline { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; font-size: 13px; color: var(--muted-dark); }
+  .recipe-wrap .byline .avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--mauve); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; }
+
+  .hero-img-wrap { margin: 56px -80px 48px; aspect-ratio: 16/11; border-radius: var(--r-md); background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600&auto=format&fit=crop&q=80'); position: relative; }
+  .hero-img-wrap .caption { position: absolute; bottom: -24px; right: 24px; background: var(--paper); padding: 14px 18px; border-radius: var(--r-md); box-shadow: var(--e-3); max-width: 220px; transform: rotate(-1.5deg); }
+  .hero-img-wrap .caption .hand { font-family: 'Caveat', cursive; font-size: 18px; color: var(--walnut); line-height: 1.2; }
+
+  .meta-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 32px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 48px 0 40px; }
+  .meta-bar .cell { text-align: center; }
+  .meta-bar .lbl { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--walnut); font-weight: 600; margin-bottom: 8px; }
+  .meta-bar .val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--ink); }
+
+  .actions { display: flex; justify-content: center; gap: 12px; margin-bottom: 56px; flex-wrap: wrap; }
+
+  .headnote { font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.55; color: var(--ink); font-weight: 300; font-style: italic; text-align: center; max-width: 58ch; margin: 0 auto 56px; position: relative; padding: 0 60px; }
+  .headnote::before, .headnote::after {
+    content: ''; position: absolute; top: 12px;
+    width: 40px; height: 1px; background: var(--walnut);
+  }
+  .headnote::before { left: 0; }
+  .headnote::after { right: 0; }
+  .headnote p { margin: 0 0 16px; }
+  .headnote p:last-child { margin-bottom: 0; }
+
+  .recipe-body { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; padding-top: 32px; border-top: 1px solid var(--rule); }
+  .ing-col .sub-h, .met-col .sub-h { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; margin: 0 0 24px; letter-spacing: -0.01em; }
+  .ing-col .sub-h em { font-family: 'Pinyon Script', cursive; color: var(--mauve); font-style: normal; }
+
+  .ing-group { margin-bottom: 28px; }
+  .ing-group h4 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--walnut); font-weight: 600; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+  .ing-group ul { list-style: none; padding: 0; margin: 0; }
+  .ing-group li { font-size: 15px; line-height: 1.65; padding: 6px 0; display: flex; gap: 10px; align-items: baseline; color: var(--ink); }
+  .ing-group li .check { display: inline-block; width: 14px; height: 14px; border: 1.2px solid var(--rule-strong); border-radius: 3px; flex-shrink: 0; margin-top: 4px; }
+  .ing-group li.done { color: var(--muted); text-decoration: line-through; }
+  .ing-group li.done .check { background: var(--sage); border-color: var(--sage); }
+
+  .method-step { display: grid; grid-template-columns: 40px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--rule); }
+  .method-step:last-child { border-bottom: none; }
+  .method-step .num { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 40px; color: var(--mauve); line-height: 1; }
+  .method-step p { font-size: 16px; line-height: 1.7; margin: 0; color: var(--ink); }
+  .method-step .note { font-family: 'Caveat', cursive; font-size: 19px; color: var(--walnut); margin-top: 10px; display: block; }
+
+  .inline-img { margin: 16px -40px 0; aspect-ratio: 16/9; background: var(--mauve-100); background-size: cover; background-position: center; border-radius: var(--r-md); }
+
+  .notes-block {
+    background: var(--cream); padding: 48px 56px;
+    border-radius: var(--r-md); margin: 64px 0;
+    position: relative;
+  }
+  .notes-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; margin: 0 0 16px; }
+  .notes-block h3 em { font-family: 'Pinyon Script', cursive; color: var(--mauve); font-style: normal; }
+  .notes-block p { font-size: 15px; line-height: 1.65; color: var(--muted-dark); margin: 0 0 12px; }
+
+  .related { margin: 80px 0 0; padding-top: 48px; border-top: 1px solid var(--rule); }
+  .related h3 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; margin: 0 0 28px; letter-spacing: -0.01em; }
+  .related h3 em { font-family: 'Pinyon Script', cursive; color: var(--mauve); font-style: normal; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 0 -40px; }
+
+  @media (max-width: 900px) {
+    .recipe-wrap { padding: 32px 24px 64px; }
+    .hero-img-wrap { margin: 40px -24px 40px; }
+    .recipe-body { grid-template-columns: 1fr; gap: 40px; }
+    .meta-bar { grid-template-columns: repeat(2, 1fr); }
+    .related-grid { grid-template-columns: 1fr; margin: 0; }
+    .inline-img { margin: 16px 0 0; }
+    .notes-block { padding: 32px 24px; }
+    .headnote { padding: 0; }
+    .headnote::before, .headnote::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a href="Home.html" style="text-decoration:none;"><span class="logo">mari<span class="yum">yum</span></span></a></div>
+    <div class="nav-links">
+      <a class="nav-link" href="Home.html">Home</a>
+      <a class="nav-link active" href="Browse.html">Recipes</a>
+      <a class="nav-link" href="Cookbook.html">Cookbook</a>
+      <a class="nav-link" href="About.html">About</a>
+      <a class="nav-link" href="Contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+      <button class="icon-btn" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<article class="recipe-wrap">
+  <nav class="breadcrumbs"><a href="Home.html">Home</a> · <a href="Browse.html">Recipes</a> · <a href="Browse.html?cat=dessert">Dessert</a> · Sticky date cake</nav>
+
+  <span class="cat-label eyebrow">Dessert · Recipe № 187</span>
+  <h1>Sticky date cake with<br/><em>brown butter</em> toffee.</h1>
+  <div class="byline">
+    <span class="avatar">M</span>
+    <span>Mariyum · October 14, 2026</span>
+    <span>·</span>
+    <span>4.9 ★ (142 ratings)</span>
+  </div>
+
+  <div class="hero-img-wrap">
+    <div class="caption"><span class="hand">A Sunday kind of cake. Serve warm.</span></div>
+  </div>
+
+  <div class="meta-bar">
+    <div class="cell"><div class="lbl">Prep</div><div class="val">15 min</div></div>
+    <div class="cell"><div class="lbl">Cook</div><div class="val">40 min</div></div>
+    <div class="cell"><div class="lbl">Serves</div><div class="val">8</div></div>
+    <div class="cell"><div class="lbl">Difficulty</div><div class="val">Easy</div></div>
+  </div>
+
+  <div class="actions">
+    <button class="btn outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg>Save</button>
+    <button class="btn outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V4h12v5M6 14h12v7H6z"/></svg>Print</button>
+    <button class="btn outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8 11l8-4M8 13l8 4"/></svg>Share</button>
+    <button class="btn ghost">Jump to recipe ↓</button>
+  </div>
+
+  <div class="headnote">
+    <p>This started as a craving for a date cake on a rainy Tuesday, and turned into one of the most saved recipes on the site. Medjool dates, brown butter, a toffee sauce you pour over while the cake is still warm.</p>
+    <p>I'd eat it for breakfast with coffee, for dessert with a scoop of vanilla, and straight from the pan at midnight — no judgement.</p>
+  </div>
+
+  <div class="recipe-body">
+    <div class="ing-col">
+      <h2 class="sub-h"><em>Ingredients</em></h2>
+
+      <div class="ing-group">
+        <h4>For the cake</h4>
+        <ul>
+          <li><span class="check"></span>200g medjool dates, pitted</li>
+          <li class="done"><span class="check"></span>1 tsp baking soda</li>
+          <li class="done"><span class="check"></span>200ml boiling water</li>
+          <li><span class="check"></span>115g salted butter, softened</li>
+          <li><span class="check"></span>150g light brown sugar</li>
+          <li><span class="check"></span>2 large eggs</li>
+          <li><span class="check"></span>180g self-rising flour</li>
+          <li><span class="check"></span>1 tsp vanilla extract</li>
+        </ul>
+      </div>
+
+      <div class="ing-group">
+        <h4>For the toffee sauce</h4>
+        <ul>
+          <li><span class="check"></span>115g salted butter</li>
+          <li><span class="check"></span>200g dark brown sugar</li>
+          <li><span class="check"></span>200ml double cream</li>
+          <li><span class="check"></span>flaky sea salt, to finish</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="met-col">
+      <h2 class="sub-h">Method</h2>
+
+      <div class="method-step">
+        <div class="num">01</div>
+        <div>
+          <p>Heat the oven to 180°C (350°F). Butter an 8-inch round cake pan and line the base with parchment. Pit the dates, then pour the boiling water over them with the baking soda. Let sit 10 minutes — they'll get soft and glossy.</p>
+          <span class="note">the baking soda softens the dates and mellows any sharp edge — don't skip it.</span>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="num">02</div>
+        <div>
+          <p>Brown the 115g of butter for the sauce in a small pan — medium heat, swirling, until the milk solids are deep amber and it smells like toasted caramel. Off the heat, add the brown sugar and cream, whisk until smooth. Set aside.</p>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="num">03</div>
+        <div>
+          <p>In a stand mixer, cream the softened butter and sugar for the cake until pale. Add eggs one at a time, then vanilla. Fold in the flour, then the date mixture (with its liquid). It'll look loose — that's right.</p>
+          <div class="inline-img" style="background-image:url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=900&auto=format&fit=crop&q=80')"></div>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="num">04</div>
+        <div>
+          <p>Pour into the pan. Bake 38–42 minutes, until a skewer comes out with a few moist crumbs. While it's still warm, poke holes all over the top with a skewer and pour half the toffee sauce over — let it drink it in.</p>
+          <span class="note">the warm cake + warm sauce step is the whole thing. trust.</span>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="num">05</div>
+        <div>
+          <p>Slice thick. Serve with the rest of the toffee sauce warmed, a scoop of vanilla ice cream, and a pinch of flaky salt. Leftovers keep 3 days, covered — rewarm gently.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes-block">
+    <h3>Cook's <em>notes.</em></h3>
+    <p><strong>Make ahead:</strong> Bake the cake a day ahead and make the toffee sauce fresh. Rewarm the cake in a low oven for 10 minutes before pouring sauce.</p>
+    <p><strong>Dairy-free:</strong> Sub vegan butter and full-fat coconut cream. The toffee still browns beautifully.</p>
+    <p><strong>Don't skip:</strong> Flaky salt on top. It's the whole point.</p>
+  </div>
+
+  <section class="related">
+    <h3>You might also <em>love.</em></h3>
+    <div class="related-grid">
+      <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Breads · 3 hr</span><h3 class="title">Tiramisu cinnamon rolls</h3></a>
+      <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1486632024304-d6a0c5151a0f?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Dessert · 35 min</span><h3 class="title">Brown butter marbled cookies</h3></a>
+      <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Dessert · 1 hr 10 min</span><h3 class="title">Apple galette</h3></a>
+    </div>
+  </section>
+</article>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col"><span class="logo" style="font-size:34px;">mari<span class="yum">yum</span></span><p style="margin-top:16px;">A warm kitchen journal by Mariyum.</p></div>
+    <div class="footer-col"><h4>Recipes</h4><a href="Browse.html">Breakfast</a><a href="Browse.html">Lunch</a><a href="Browse.html">Dinner</a><a href="Browse.html">Dessert</a></div>
+    <div class="footer-col"><h4>Site</h4><a href="About.html">About</a><a href="Cookbook.html">Cookbook</a><a href="Contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Follow</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 mxriyum</span><span class="meta-mono">Designed with love</span></div>
+</footer>
+
+<script>
+document.querySelectorAll('.ing-group li').forEach(li => li.addEventListener('click', () => li.classList.toggle('done')));
+</script>
+</body>
+</html>

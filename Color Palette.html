@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>mxriyum — Color Palette</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Pinyon+Script&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #2E2621;
+    --paper: #FBF8F3;
+    --cream: #F5EFE7;
+    --mauve: #B69B8E;
+    --walnut: #8A6F5F;
+    --sage: #8A9579;
+    --tomato: #C85943;
+    --butter: #E8B94D;
+    --berry: #8A3A4E;
+
+    --rule: rgba(46,38,33,0.12);
+    --muted: rgba(46,38,33,0.55);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1320px; margin: 0 auto; padding: 72px 56px 120px; }
+
+  /* Display / header type */
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    display: inline-flex; align-items: baseline;
+    color: var(--mauve);
+    line-height: 1;
+  }
+  .logo .yum {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.15em;
+    margin-left: -0.03em;
+    transform: translateY(0.08em);
+    display: inline-block;
+    color: var(--mauve);
+  }
+  .display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 84px);
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    color: var(--ink);
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--walnut);
+  }
+
+  /* ─── HEADER ─── */
+  .page-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 48px; margin-bottom: 72px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-header .meta { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 360px; }
+  .page-header .meta strong { color: var(--ink); font-weight: 600; }
+
+  /* ─── SECTION HEADINGS ─── */
+  .section { margin-bottom: 96px; }
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; margin-bottom: 28px;
+  }
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 42px;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+  .section-head .sub { color: var(--muted); font-size: 14px; max-width: 420px; text-align: right; line-height: 1.5; }
+
+  /* ─── CORE SWATCHES ROW ─── */
+  .core-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 12px;
+  }
+  .core-swatch {
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--rule);
+    background: #fff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .core-swatch:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(46,38,33,0.08);
+  }
+  .core-swatch .chip { height: 140px; }
+  .core-swatch .core-meta {
+    padding: 12px 14px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .core-swatch .core-name {
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .core-swatch .core-hex {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    font-size: 10px;
+  }
+
+  /* ─── RAMP GRID ─── */
+  .ramp-row {
+    display: grid;
+    grid-template-columns: 160px repeat(10, 1fr);
+    gap: 4px;
+    align-items: stretch;
+    margin-bottom: 12px;
+  }
+  .ramp-label {
+    padding: 14px 16px;
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 2px;
+  }
+  .ramp-label .n { font-family: 'Cormorant Garamond', serif; font-size: 24px; letter-spacing: -0.01em; }
+  .ramp-label .role { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
+  .ramp-cell {
+    height: 76px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 8px 10px;
+    transition: transform 0.12s ease;
+    overflow: hidden;
+  }
+  .ramp-cell:hover { transform: translateY(-2px); }
+  .ramp-cell .step { font-size: 10px; font-weight: 600; letter-spacing: 0.05em; opacity: 0.7; }
+  .ramp-cell .hex { font-family: 'JetBrains Mono', monospace; font-size: 10px; opacity: 0.8; }
+  .ramp-header {
+    display: grid;
+    grid-template-columns: 160px repeat(10, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ramp-header .step-head {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--muted);
+    font-weight: 600;
+    padding: 4px 0;
+  }
+  .ramp-header .spacer-head { /* empty */ }
+
+  /* ─── SEMANTIC TOKENS ─── */
+  .semantic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .sem-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.15s;
+  }
+  .sem-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(46,38,33,0.06);
+  }
+  .sem-card .preview {
+    height: 60px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+    border: 1px solid var(--rule);
+  }
+  .sem-card .token {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .sem-card .desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+  .sem-card .hex { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+
+  /* ─── PREVIEW SURFACES ─── */
+  .previews {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .preview-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: #fff;
+  }
+  .preview-caption { padding: 14px 18px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; }
+  .preview-caption code { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink); }
+
+  /* Recipe card preview */
+  .rp-card { padding: 32px 28px; height: 340px; display: flex; flex-direction: column; justify-content: space-between; }
+  .rp-card .rp-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; opacity: 0.75; }
+  .rp-card .rp-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em; line-height: 1.05; margin: 8px 0 16px; }
+  .rp-card .rp-meta { font-size: 11px; opacity: 0.7; display: flex; gap: 16px; }
+  .rp-card .rp-img { flex: 1; border-radius: 4px; margin: 12px 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
+
+  /* Category chips */
+  .chips-row { padding: 32px 28px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; height: 340px; align-content: center; justify-content: center; }
+  .chip-tag {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  /* Header preview */
+  .hdr-preview { padding: 28px 28px; height: 340px; display: flex; flex-direction: column; }
+  .hdr-preview .nav-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid currentColor; opacity: 0.9; gap: 24px; }
+  .hdr-preview .nav-row .logo { font-size: 20px !important; flex-shrink: 0; padding-right: 8px; }
+  .hdr-preview .nav-row .nav-links { display: flex; gap: 16px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; flex-shrink: 0; }
+  .hdr-preview .hero-stack { flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center; padding: 20px 0; }
+  .hdr-preview .hero-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; opacity: 0.7; }
+  .hdr-preview .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: -0.02em; line-height: 1; }
+  .hdr-preview .hero-title em { font-family: 'Pinyon Script', cursive; font-style: normal; font-size: 1.1em; }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: var(--paper);
+    padding: 12px 20px; border-radius: 8px;
+    font-size: 13px; font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0; transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none; z-index: 100;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Contrast badge */
+  .contrast-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .contrast-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 3px 7px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .contrast-chip .dot { width: 10px; height: 10px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.08); }
+  .contrast-chip .pass { color: #2F6B3A; font-weight: 600; }
+  .contrast-chip .fail { color: #A84A36; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ─── HEADER ─── -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow" style="margin-bottom: 14px;">Brand System · 02</div>
+      <span class="logo" style="font-size: 56px;">mari<span class="yum">yum</span></span>
+      <div class="display" style="margin-top: 18px;">Color palette.</div>
+    </div>
+    <div class="meta">
+      Built from the existing site palette. <strong>Nine hues</strong>, each with a 10-step ramp, plus semantic tokens. Click any swatch to copy its hex. Warm mauve remains the protagonist — tomato, butter, and berry give recipe content and seasonal accents somewhere to live.
+    </div>
+  </div>
+
+  <!-- ─── SECTION 1 · CORE SWATCHES ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>The nine.</h2>
+      <div class="sub">Core palette at a glance. These are the base hues — each is step 500 in its ramp.</div>
+    </div>
+    <div id="core-grid" class="core-grid"></div>
+  </div>
+
+  <!-- ─── SECTION 2 · RAMPS ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Ramps.</h2>
+      <div class="sub">Ten steps per hue (50–900), generated in OKLCH for perceptually even transitions. Use 50–200 for backgrounds, 500 for base, 700–900 for text & hover states.</div>
+    </div>
+    <div id="ramp-wrap"></div>
+  </div>
+
+  <!-- ─── SECTION 3 · SEMANTIC TOKENS ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Semantic tokens.</h2>
+      <div class="sub">Named by role, not hue. These are what components should reference — if the base hue ever shifts, everything updates at once.</div>
+    </div>
+    <div id="semantic-grid" class="semantic-grid"></div>
+  </div>
+
+  <!-- ─── SECTION 4 · IN CONTEXT ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>In context.</h2>
+      <div class="sub">Real UI surfaces showing how the palette reads together. Hover the controls to swap palette combinations live.</div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-bottom: 24px; flex-wrap: wrap;">
+      <button class="preset-btn" data-preset="default">Default — mauve</button>
+      <button class="preset-btn" data-preset="walnut">Walnut</button>
+      <button class="preset-btn" data-preset="sage">Sage</button>
+      <button class="preset-btn" data-preset="tomato">Tomato</button>
+      <button class="preset-btn" data-preset="berry">Berry</button>
+      <button class="preset-btn" data-preset="ink">Ink</button>
+    </div>
+
+    <div class="previews">
+      <!-- Recipe card -->
+      <div class="preview-card">
+        <div class="rp-card" id="rp-card">
+          <div>
+            <div class="rp-eyebrow">Dessert · 45 min</div>
+            <div class="rp-title">Sticky date<br/>cake.</div>
+          </div>
+          <div class="rp-img" id="rp-img"></div>
+          <div class="rp-meta"><span>Serves 8</span><span>Easy</span><span>One bowl</span></div>
+        </div>
+        <div class="preview-caption"><span>Recipe card</span><code id="rp-caption">bg: mauve-50  ·  text: mauve-900</code></div>
+      </div>
+
+      <!-- Category chips -->
+      <div class="preview-card">
+        <div class="chips-row" id="chips-row">
+          <span class="chip-tag" data-hue="mauve">Breakfast</span>
+          <span class="chip-tag" data-hue="walnut">Lunch</span>
+          <span class="chip-tag" data-hue="sage">Dinner</span>
+          <span class="chip-tag" data-hue="tomato">Appetizers</span>
+          <span class="chip-tag" data-hue="butter">Breads</span>
+          <span class="chip-tag" data-hue="berry">Dessert</span>
+          <span class="chip-tag" data-hue="ink">Lifestyle</span>
+        </div>
+        <div class="preview-caption"><span>Category chips</span><code>bg: {hue}-100  ·  text: {hue}-800</code></div>
+      </div>
+
+      <!-- Header / hero -->
+      <div class="preview-card">
+        <div class="hdr-preview" id="hdr-preview">
+          <div class="nav-row">
+            <span class="logo">mari<span class="yum">yum</span></span>
+            <div class="nav-links"><span>Recipes</span><span>About</span></div>
+          </div>
+          <div class="hero-stack">
+            <div class="hero-eyebrow">New this week</div>
+            <div class="hero-title">turning food<br/>into <em>art</em>.</div>
+          </div>
+        </div>
+        <div class="preview-caption"><span>Site header</span><code id="hdr-caption">bg: mauve-50  ·  text: ink-900</code></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 5 · PAIRINGS ─── -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Tested pairings.</h2>
+      <div class="sub">Approved text/bg combinations with WCAG contrast checks. Use these as a starting point rather than rolling your own.</div>
+    </div>
+    <div id="pairings" style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;"></div>
+  </div>
+
+</div>
+
+<div id="toast" class="toast">copied</div>
+
+<style>
+  .preset-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    color: var(--ink);
+    transition: all 0.12s;
+  }
+  .preset-btn:hover { border-color: var(--ink); }
+  .preset-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+</style>
+
+<script src="palette.js"></script>
+
+</body>
+</html>

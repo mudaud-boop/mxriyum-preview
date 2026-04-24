@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>mxriyum — Recipes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Caveat:wght@400;500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css" />
+
+<style>
+  .browse-hero {
+    padding: 72px 40px 40px;
+    max-width: 1320px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: end;
+    border-bottom: 1px solid var(--rule);
+  }
+  .browse-hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(64px, 9vw, 128px); line-height: 0.95; letter-spacing: -0.03em; margin: 0; }
+  .browse-hero h1 em { font-family: 'Pinyon Script', cursive; font-style: normal; color: var(--mauve); }
+  .browse-hero .meta { font-size: 14px; color: var(--muted-dark); line-height: 1.55; max-width: 40ch; padding-bottom: 8px; }
+  .browse-hero .meta strong { color: var(--ink); font-weight: 600; }
+  .browse-hero .hand { font-size: 22px; color: var(--sage); margin-bottom: 16px; display: block; transform: rotate(-2deg); }
+
+  .browse-search { padding: 32px 40px; max-width: 1320px; margin: 0 auto; }
+  .search-wrap { position: relative; }
+  .search-wrap .icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--walnut); }
+  .search-wrap .input { padding: 20px 20px 20px 52px; font-size: 17px; border-radius: var(--r-pill); background: #fff; }
+
+  /* Filter rail */
+  .filter-bar {
+    max-width: 1320px; margin: 0 auto; padding: 8px 40px 32px;
+  }
+  .filter-section { margin-bottom: 20px; }
+  .filter-section .lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--walnut); margin-bottom: 12px; display: block; }
+  .chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .results-head {
+    max-width: 1320px; margin: 0 auto; padding: 32px 40px 24px;
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .results-head .count { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; }
+  .results-head .count em { font-family: 'Pinyon Script', cursive; color: var(--mauve); font-style: normal; }
+  .results-head .sort { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted-dark); }
+  .results-head select { font-family: 'Inter',sans-serif; font-size: 13px; padding: 6px 12px; border: 1px solid var(--rule); border-radius: var(--r-md); background: #fff; color: var(--ink); cursor: pointer; }
+
+  .results-grid {
+    max-width: 1320px; margin: 0 auto; padding: 0 40px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 32px;
+  }
+
+  .pager { padding: 72px 40px; max-width: 1320px; margin: 0 auto; display: flex; justify-content: center; gap: 8px; }
+  .pager .pg-btn { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--rule); background: #fff; border-radius: 6px; color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 500; cursor: pointer; }
+  .pager .pg-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pager .pg-btn:hover:not(.active) { border-color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .browse-hero { grid-template-columns: 1fr; padding: 48px 24px 24px; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); padding: 0 24px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a href="Home.html" style="text-decoration:none;"><span class="logo">mari<span class="yum">yum</span></span></a></div>
+    <div class="nav-links">
+      <a class="nav-link" href="Home.html">Home</a>
+      <a class="nav-link active" href="Browse.html">Recipes</a>
+      <a class="nav-link" href="Cookbook.html">Cookbook</a>
+      <a class="nav-link" href="About.html">About</a>
+      <a class="nav-link" href="Contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+      <button class="icon-btn" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="browse-hero">
+  <div>
+    <span class="hand">201 recipes and counting —</span>
+    <h1>The <em>recipe</em> index.</h1>
+  </div>
+  <div class="meta"><strong>A growing kitchen.</strong> Filter by category, dietary, or time. Save your favorites to a personal cookbook. New recipes added every Sunday.</div>
+</section>
+
+<!-- SEARCH -->
+<section class="browse-search">
+  <div class="search-wrap">
+    <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></span>
+    <input class="input" placeholder="Search 201 recipes — by name, ingredient, or vibe…"/>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="filter-bar">
+  <div class="filter-section">
+    <span class="lbl">Category</span>
+    <div class="chip-row">
+      <a class="chip active">All</a>
+      <a class="chip">Breakfast</a>
+      <a class="chip">Lunch</a>
+      <a class="chip">Dinner</a>
+      <a class="chip">Appetizers</a>
+      <a class="chip">Breads</a>
+      <a class="chip">Dessert</a>
+      <a class="chip">Drinks</a>
+    </div>
+  </div>
+  <div class="filter-section">
+    <span class="lbl">Dietary</span>
+    <div class="chip-row">
+      <a class="chip sage">Vegetarian</a>
+      <a class="chip sage">Vegan</a>
+      <a class="chip">Gluten-free</a>
+      <a class="chip">Dairy-free</a>
+      <a class="chip">Nut-free</a>
+    </div>
+  </div>
+  <div class="filter-section">
+    <span class="lbl">Time</span>
+    <div class="chip-row">
+      <a class="chip butter">Under 30 min</a>
+      <a class="chip">30–60 min</a>
+      <a class="chip">1–2 hr</a>
+      <a class="chip">Weekend project</a>
+    </div>
+  </div>
+  <div class="filter-section">
+    <span class="lbl">Season</span>
+    <div class="chip-row">
+      <a class="chip">Spring</a>
+      <a class="chip">Summer</a>
+      <a class="chip active">Autumn</a>
+      <a class="chip">Winter</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<div class="results-head">
+  <div class="count">Showing <em>48</em> recipes</div>
+  <div class="sort">
+    <span>Sort by</span>
+    <select>
+      <option>Newest first</option><option>Most saved</option><option>Quickest</option><option>A–Z</option>
+    </select>
+  </div>
+</div>
+
+<section class="results-grid">
+  <!-- 12 cards -->
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=80')"><div class="tag-strip"><span class="tag">New</span></div></div><span class="meta-mono">Dessert · 55 min</span><h3 class="title">Sticky date cake</h3><div class="sub">Brown butter toffee.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Dinner · 40 min</span><h3 class="title">Beef stroganoff</h3><div class="sub">Weeknight comfort.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1587314168485-3236d6710814?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Dessert · 1 hr</span><h3 class="title">Classic glazed donuts</h3><div class="sub">Yeast-raised, glossy.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1486632024304-d6a0c5151a0f?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Dessert · 35 min</span><h3 class="title">Brown butter marbled cookies</h3><div class="sub">The only cookie recipe.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Lunch · 25 min</span><h3 class="title">Doner kebab sandwich</h3><div class="sub">Garlic-yogurt, pickles.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500&auto=format&fit=crop&q=80')"><div class="tag-strip"><span class="tag">Weekend</span></div></div><span class="meta-mono">Dessert · 4 hr</span><h3 class="title">Sweet potato cheesecake</h3><div class="sub">For Thanksgiving.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1547592180-85f173990554?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Soup · 45 min</span><h3 class="title">Creamy potato soup</h3><div class="sub">Leeks, bay, crisped skins.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Breads · 3 hr 20 min</span><h3 class="title">Tiramisu cinnamon rolls</h3><div class="sub">Mascarpone glaze.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Dinner · 30 min</span><h3 class="title">Red curry dumpling bake</h3><div class="sub">One pan.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Breakfast · 25 min</span><h3 class="title">Cinnamon oat pancakes</h3><div class="sub">Stacked, not flat.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Dessert · 1 hr 10 min</span><h3 class="title">Apple galette</h3><div class="sub">Rustic, buttery.</div></a>
+  <a class="recipe-card" href="Recipe.html"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1585478259715-4aa86f58f7f9?w=500&auto=format&fit=crop&q=80')"></div><span class="meta-mono">Dinner · 2 hr</span><h3 class="title">Braised short rib ragù</h3><div class="sub">Sunday sauce.</div></a>
+</section>
+
+<div class="pager">
+  <a class="pg-btn">‹</a>
+  <a class="pg-btn active">1</a>
+  <a class="pg-btn">2</a>
+  <a class="pg-btn">3</a>
+  <a class="pg-btn">4</a>
+  <a class="pg-btn">›</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col"><span class="logo" style="font-size:34px;">mari<span class="yum">yum</span></span><p style="margin-top:16px;">A warm kitchen journal by Mariyum.</p></div>
+    <div class="footer-col"><h4>Recipes</h4><a href="Browse.html">Breakfast</a><a href="Browse.html">Lunch</a><a href="Browse.html">Dinner</a><a href="Browse.html">Dessert</a></div>
+    <div class="footer-col"><h4>Site</h4><a href="About.html">About</a><a href="Cookbook.html">Cookbook</a><a href="Contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Follow</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 mxriyum</span><span class="meta-mono">Designed with love</span></div>
+</footer>
+
+<script>
+document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', (e) => {
+  e.preventDefault();
+  c.classList.toggle('active');
+}));
+</script>
+</body>
+</html>

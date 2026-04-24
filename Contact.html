@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Contact — mxriyum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Caveat:wght@400;500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css" />
+
+<style>
+  .contact-wrap { max-width: 1100px; margin: 0 auto; padding: 80px 40px 100px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; }
+  .contact-intro h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(56px, 7vw, 88px); line-height: 0.95; letter-spacing: -0.03em; margin: 16px 0 24px; }
+  .contact-intro h1 em { font-family: 'Pinyon Script', cursive; font-style: normal; color: var(--mauve); }
+  .contact-intro p { font-size: 16px; line-height: 1.65; color: var(--muted-dark); margin: 0 0 32px; max-width: 38ch; }
+  .contact-links { border-top: 1px solid var(--rule); padding-top: 32px; }
+  .contact-link { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--rule); color: var(--ink); text-decoration: none; }
+  .contact-link:hover .lbl { color: var(--mauve-700); }
+  .contact-link .lbl { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; }
+  .contact-link .val { font-size: 13px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+  .contact-form {
+    background: #fff; border: 1px solid var(--rule); border-radius: var(--r-md);
+    padding: 48px; display: flex; flex-direction: column; gap: 24px;
+  }
+  .contact-form h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 32px; margin: 0; line-height: 1.1; letter-spacing: -0.01em; }
+  .contact-form .field label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--walnut); display: block; margin-bottom: 8px; }
+  .contact-form textarea { font-family: 'Inter', sans-serif; font-size: 14px; padding: 12px 16px; border: 1px solid var(--rule); border-radius: var(--r-md); min-height: 140px; resize: vertical; width: 100%; line-height: 1.5; color: var(--ink); background: var(--paper); }
+  .contact-form textarea:focus { outline: none; border-color: var(--ink); background: #fff; box-shadow: 0 0 0 3px rgba(182,155,142,0.22); }
+  .contact-form .select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238A6F5F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+
+  @media (max-width: 900px) {
+    .contact-wrap { grid-template-columns: 1fr; padding: 48px 24px; gap: 48px; }
+    .contact-form { padding: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a href="Home.html" style="text-decoration:none;"><span class="logo">mari<span class="yum">yum</span></span></a></div>
+    <div class="nav-links">
+      <a class="nav-link" href="Home.html">Home</a>
+      <a class="nav-link" href="Browse.html">Recipes</a>
+      <a class="nav-link" href="Cookbook.html">Cookbook</a>
+      <a class="nav-link" href="About.html">About</a>
+      <a class="nav-link active" href="Contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<section class="contact-wrap">
+  <div class="contact-intro">
+    <span class="eyebrow">Say hello</span>
+    <h1>Drop me a <em>line.</em></h1>
+    <p>I read every message. Recipe requests, substitution questions, cookbook orders, or just to say you made something — all welcome.</p>
+
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:hi@mxriyum.com"><span class="lbl">Email</span><span class="val">hi@mxriyum.com</span></a>
+      <a class="contact-link" href="#"><span class="lbl">Instagram</span><span class="val">@mxriyum</span></a>
+      <a class="contact-link" href="#"><span class="lbl">TikTok</span><span class="val">@mxriyum</span></a>
+      <a class="contact-link" href="#"><span class="lbl">Press / collabs</span><span class="val">press@mxriyum.com</span></a>
+    </div>
+  </div>
+
+  <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Sent ♡';">
+    <h2>Send a note.</h2>
+    <div class="field">
+      <label>Your name</label>
+      <input class="input" placeholder="Mariyum"/>
+    </div>
+    <div class="field">
+      <label>Your email</label>
+      <input class="input" type="email" placeholder="you@domain.com"/>
+    </div>
+    <div class="field">
+      <label>About</label>
+      <select class="input select">
+        <option>Recipe question</option>
+        <option>Cookbook / preorder</option>
+        <option>Press or collaboration</option>
+        <option>Something else</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Message</label>
+      <textarea placeholder="Tell me more…"></textarea>
+    </div>
+    <button class="btn primary lg" type="submit">Send message</button>
+  </form>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col"><span class="logo" style="font-size:34px;">mari<span class="yum">yum</span></span><p style="margin-top:16px;">A warm kitchen journal by Mariyum.</p></div>
+    <div class="footer-col"><h4>Recipes</h4><a href="Browse.html">Breakfast</a><a href="Browse.html">Dinner</a><a href="Browse.html">Dessert</a></div>
+    <div class="footer-col"><h4>Site</h4><a href="About.html">About</a><a href="Cookbook.html">Cookbook</a><a href="Contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Follow</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 mxriyum</span><span class="meta-mono">Designed with love</span></div>
+</footer>
+
+</body>
+</html>
