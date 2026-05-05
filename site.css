@@ -12,9 +12,14 @@
   --mauve-100: #E4D9D2;
   --walnut: #8A6F5F;
   --sage: #8A9579;
+  --sage-deep: #6B7A5A;
+  --sage-soft: #DCE3CF;
+  --sage-tint: #EDF1E3;
   --tomato: #C85943;
   --butter: #E8B94D;
+  --butter-soft: #F5E2A8;
   --berry: #8A3A4E;
+  --blush: #E8C9B8;
 
   --rule: rgba(46,38,33,0.12);
   --rule-strong: rgba(46,38,33,0.22);
@@ -39,9 +44,10 @@
 * { box-sizing: border-box; }
 html, body {
   margin: 0; padding: 0;
-  background: var(--paper);
+  background: #F8F1E4;
   color: var(--ink);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   /* paper grain — subtle noise */
@@ -55,7 +61,9 @@ html, body {
 /* Typography */
 .display-serif { font-family: 'Cormorant Garamond', serif; font-weight: 300; letter-spacing: -0.02em; line-height: 0.98; }
 .script { font-family: 'Pinyon Script', cursive; }
-.hand { font-family: 'Caveat', cursive; font-weight: 400; }
+.hand { font-family: 'Caveat', cursive; font-weight: 500; color: var(--sage-deep); }
+.hand-mauve { font-family: 'Caveat', cursive; font-weight: 500; color: var(--mauve-700); }
+.hand-tomato { font-family: 'Caveat', cursive; font-weight: 500; color: var(--tomato); }
 .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--walnut); }
 .meta-mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: var(--muted); }
 
@@ -66,7 +74,7 @@ html, body {
 /* ─── TOP NAV ─── */
 .nav {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(251, 248, 243, 0.92);
+  background: rgba(248, 241, 228, 0.94);
   backdrop-filter: saturate(1.2) blur(12px);
   -webkit-backdrop-filter: saturate(1.2) blur(12px);
   border-bottom: 1px solid var(--rule);
@@ -74,17 +82,17 @@ html, body {
 .nav-inner {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 16px 40px;
+  padding: 18px 40px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 32px;
 }
-.nav-left { display: flex; align-items: center; gap: 28px; }
-.nav-right { display: flex; align-items: center; gap: 8px; justify-self: end; }
-.nav .logo { font-size: 30px; }
-
-.nav-links { display: flex; gap: 28px; justify-self: center; }
+.nav-links-left { display: flex; gap: 28px; justify-self: start; }
+.nav-links-right { display: flex; gap: 28px; justify-self: end; align-items: center; }
+.nav-center { justify-self: center; }
+.nav .logo { font-size: 32px; }
+.nav-icons { display: inline-flex; gap: 4px; margin-left: 18px; padding-left: 18px; border-left: 1px solid var(--rule); }
 .nav-link {
   font-size: 12px; font-weight: 500;
   color: var(--ink);
@@ -96,10 +104,10 @@ html, body {
   transition: color 0.15s;
 }
 .nav-link:hover { color: var(--mauve-700); }
-.nav-link.active { color: var(--mauve-700); }
+.nav-link.active { color: var(--sage-deep); }
 .nav-link.active::after {
   content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
-  width: 4px; height: 4px; border-radius: 50%; background: var(--mauve);
+  width: 4px; height: 4px; border-radius: 50%; background: var(--sage-deep);
 }
 
 .icon-btn {
@@ -114,7 +122,7 @@ html, body {
 
 /* ─── BUTTONS ─── */
 .btn {
-  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-family: 'Lora', Georgia, serif; font-weight: 500;
   border-radius: var(--r-md);
   border: 1px solid transparent;
   cursor: pointer;
@@ -134,13 +142,15 @@ html, body {
 .btn.outline:hover { background: var(--ink); color: var(--paper); }
 .btn.secondary { background: var(--mauve); color: #fff; border-color: var(--mauve); }
 .btn.secondary:hover { background: var(--mauve-700); border-color: var(--mauve-700); }
+.btn.sage { background: var(--sage-deep); color: #fff; border-color: var(--sage-deep); }
+.btn.sage:hover { background: #56664A; border-color: #56664A; }
 .btn.ghost { background: transparent; color: var(--ink); }
 .btn.ghost:hover { background: var(--cream); }
 .btn.pill { border-radius: var(--r-pill); }
 
 /* ─── FORM ─── */
 .input {
-  font-family: 'Inter', sans-serif; font-size: 14px;
+  font-family: 'Lora', Georgia, serif; font-size: 15px;
   padding: 12px 16px;
   background: var(--paper);
   border: 1px solid var(--rule);
@@ -159,8 +169,9 @@ html, body {
 /* ─── Chip ─── */
 .chip {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 14px;
-  font-size: 12px; font-weight: 500;
+  padding: 8px 16px;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 14px; font-weight: 500;
   background: var(--paper);
   border: 1px solid var(--rule);
   border-radius: var(--r-pill);
@@ -170,18 +181,18 @@ html, body {
   text-decoration: none;
   white-space: nowrap;
 }
-.chip:hover { border-color: var(--ink); }
-.chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.chip.sage   { background: rgba(138,149,121,0.15); border-color: rgba(138,149,121,0.4); color: #5A6B4A; }
-.chip.tomato { background: rgba(200,89,67,0.10); border-color: rgba(200,89,67,0.35); color: var(--tomato); }
-.chip.butter { background: rgba(232,185,77,0.15); border-color: rgba(232,185,77,0.4); color: #8A6A1A; }
+.chip:hover { border-color: var(--sage-deep); color: var(--sage-deep); }
+.chip.active { background: var(--sage-deep); color: var(--paper); border-color: var(--sage-deep); }
+.chip.sage   { background: var(--sage-soft); border-color: rgba(138,149,121,0.5); color: var(--sage-deep); }
+.chip.tomato { background: rgba(200,89,67,0.12); border-color: rgba(200,89,67,0.4); color: var(--tomato); }
+.chip.butter { background: var(--butter-soft); border-color: rgba(232,185,77,0.55); color: #8A6A1A; }
 
 /* ─── FOOTER ─── */
 .site-footer {
   margin-top: 120px;
   padding: 72px 40px 48px;
   border-top: 1px solid var(--rule);
-  background: var(--cream);
+  background: var(--sage-tint);
 }
 .footer-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
 .footer-col h4 { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--walnut); margin: 0 0 16px; }
@@ -274,7 +285,7 @@ html, body {
 
 /* Section heads */
 .section-head {
-  display: flex; justify-content: space-between; align-items: baseline;
+  display: flex; justify-content: space-between; align-items: flex-end;
   padding-bottom: 24px; border-bottom: 1px solid var(--rule);
   margin-bottom: 40px; gap: 24px;
 }

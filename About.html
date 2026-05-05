@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Caveat:wght@400;500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css" />
 
 <style>
@@ -16,14 +16,14 @@
   .about-hero p { font-size: 17px; line-height: 1.55; color: var(--muted-dark); margin: 0 0 16px; max-width: 44ch; }
   .about-portrait { aspect-ratio: 3/4; background: var(--mauve-100); background-image: url('https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?w=900&auto=format&fit=crop&q=80'); background-size: cover; background-position: center; border-radius: var(--r-md); position: relative; }
   .about-portrait .caption { position: absolute; bottom: -24px; left: -24px; background: var(--paper); padding: 16px 20px; box-shadow: var(--e-3); border-radius: var(--r-md); transform: rotate(-2deg); }
-  .about-portrait .caption .hand { font-family: 'Caveat', cursive; font-size: 20px; color: var(--walnut); line-height: 1.2; display: block; }
+  .about-portrait .caption .hand { font-family: 'Caveat', cursive; font-weight: 500; font-size: 22px; color: var(--sage-deep); line-height: 1.2; display: block; }
 
   .story { max-width: 760px; margin: 80px auto; padding: 0 40px; }
   .story .drop { float: left; font-family: 'Cormorant Garamond', serif; font-size: 96px; line-height: 0.85; color: var(--mauve); padding: 8px 16px 0 0; font-weight: 300; }
   .story p { font-size: 17px; line-height: 1.75; color: var(--ink); margin: 0 0 24px; }
   .story p.script-quote { font-family: 'Pinyon Script', cursive; font-size: 48px; color: var(--mauve); text-align: center; margin: 48px 0; line-height: 1.2; font-weight: 400; }
 
-  .stats { background: var(--cream); padding: 80px 40px; margin: 80px 0; }
+  .stats { background: var(--sage-tint); padding: 80px 40px; margin: 80px 0; }
   .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center; }
   .stat .val { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: var(--mauve); line-height: 1; letter-spacing: -0.02em; }
   .stat .lbl { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--walnut); margin-top: 12px; font-weight: 600; }
@@ -38,23 +38,28 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-left"><a href="index.html" style="text-decoration:none;"><span class="logo">mari<span class="yum">yum</span></span></a></div>
-    <div class="nav-links">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="Browse.html">Recipes</a>
-      <a class="nav-link" href="Cookbook.html">Cookbook</a>
-      <a class="nav-link active" href="About.html">About</a>
-      <a class="nav-link" href="Contact.html">Contact</a>
+    <div class="nav-links-left">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="Browse.html">Recipes</a>
     </div>
-    <div class="nav-right">
-      <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+    <div class="nav-center">
+      <a href="index.html" style="text-decoration:none;"><span class="logo">mari<span class="yum">yum</span></span></a>
+    </div>
+    <div class="nav-links-right">
+        <a class="nav-link" href="Cookbook.html">Cookbook</a>
+        <a class="nav-link active" href="About.html">About</a>
+        <a class="nav-link" href="Contact.html">Contact</a>
+      <span class="nav-icons">
+        <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+        <button class="icon-btn" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg></button>
+      </span>
     </div>
   </div>
 </nav>
 
 <section class="about-hero">
   <div>
-    <span class="eyebrow" style="margin-bottom:20px; display:block">A note from the kitchen</span>
+    <span style="font-family:'Caveat',cursive;font-size:28px;color:var(--sage-deep);font-weight:500;display:block;margin-bottom:12px;transform:rotate(-2deg);">a note from the kitchen —</span>
     <h1>Hi, I'm <em>Mariyum.</em></h1>
     <p>I started mxriyum in 2021 as a place to keep track of what I was cooking. Four years and a few hundred recipes later, it's grown into something closer to a journal — a running love letter to slow mornings, Sunday breads, and dessert for no occasion at all.</p>
   </div>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Caveat:wght@400;500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css" />
 
 <style>
@@ -20,7 +20,7 @@
   .browse-hero h1 em { font-family: 'Pinyon Script', cursive; font-style: normal; color: var(--mauve); }
   .browse-hero .meta { font-size: 14px; color: var(--muted-dark); line-height: 1.55; max-width: 40ch; padding-bottom: 8px; }
   .browse-hero .meta strong { color: var(--ink); font-weight: 600; }
-  .browse-hero .hand { font-size: 22px; color: var(--sage); margin-bottom: 16px; display: block; transform: rotate(-2deg); }
+  .browse-hero .hand { font-family: 'Caveat', cursive; font-size: 26px; color: var(--sage-deep); margin-bottom: 16px; display: block; transform: rotate(-2deg); font-weight: 500; }
 
   .browse-search { padding: 32px 40px; max-width: 1320px; margin: 0 auto; }
   .search-wrap { position: relative; }
@@ -41,7 +41,7 @@
     display: flex; justify-content: space-between; align-items: baseline;
   }
   .results-head .count { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; }
-  .results-head .count em { font-family: 'Pinyon Script', cursive; color: var(--mauve); font-style: normal; }
+  .results-head .count em { font-family: 'Pinyon Script', cursive; color: var(--sage-deep); font-style: normal; }
   .results-head .sort { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted-dark); }
   .results-head select { font-family: 'Inter',sans-serif; font-size: 13px; padding: 6px 12px; border: 1px solid var(--rule); border-radius: var(--r-md); background: #fff; color: var(--ink); cursor: pointer; }
 
@@ -67,17 +67,21 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-left"><a href="index.html" style="text-decoration:none;"><span class="logo">mari<span class="yum">yum</span></span></a></div>
-    <div class="nav-links">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link active" href="Browse.html">Recipes</a>
-      <a class="nav-link" href="Cookbook.html">Cookbook</a>
-      <a class="nav-link" href="About.html">About</a>
-      <a class="nav-link" href="Contact.html">Contact</a>
+    <div class="nav-links-left">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="Browse.html">Recipes</a>
     </div>
-    <div class="nav-right">
-      <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
-      <button class="icon-btn" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg></button>
+    <div class="nav-center">
+      <a href="index.html" style="text-decoration:none;"><span class="logo">mari<span class="yum">yum</span></span></a>
+    </div>
+    <div class="nav-links-right">
+        <a class="nav-link" href="Cookbook.html">Cookbook</a>
+        <a class="nav-link" href="About.html">About</a>
+        <a class="nav-link" href="Contact.html">Contact</a>
+      <span class="nav-icons">
+        <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+        <button class="icon-btn" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg></button>
+      </span>
     </div>
   </div>
 </nav>
@@ -93,6 +97,7 @@
 
 <!-- SEARCH -->
 <section class="browse-search">
+  <div style="text-align:center; margin-bottom: 18px;"><span style="font-family:'Caveat',cursive; font-size:24px; color:var(--mauve-700); transform:rotate(-1deg); display:inline-block; font-weight:500;">find what you're craving —</span></div>
   <div class="search-wrap">
     <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></span>
     <input class="input" placeholder="Search 201 recipes — by name, ingredient, or vibe…"/>

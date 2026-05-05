@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Caveat:wght@400;500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css" />
 
 <style>
@@ -40,23 +40,28 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-left"><a href="index.html" style="text-decoration:none;"><span class="logo">mari<span class="yum">yum</span></span></a></div>
-    <div class="nav-links">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="Browse.html">Recipes</a>
-      <a class="nav-link" href="Cookbook.html">Cookbook</a>
-      <a class="nav-link" href="About.html">About</a>
-      <a class="nav-link active" href="Contact.html">Contact</a>
+    <div class="nav-links-left">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="Browse.html">Recipes</a>
     </div>
-    <div class="nav-right">
-      <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+    <div class="nav-center">
+      <a href="index.html" style="text-decoration:none;"><span class="logo">mari<span class="yum">yum</span></span></a>
+    </div>
+    <div class="nav-links-right">
+        <a class="nav-link" href="Cookbook.html">Cookbook</a>
+        <a class="nav-link" href="About.html">About</a>
+        <a class="nav-link active" href="Contact.html">Contact</a>
+      <span class="nav-icons">
+        <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+        <button class="icon-btn" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.4 10.3 4.6a5 5 0 00-7.1 7.1L12 20.5l8.8-8.8a5 5 0 000-7.1z"/></svg></button>
+      </span>
     </div>
   </div>
 </nav>
 
 <section class="contact-wrap">
   <div class="contact-intro">
-    <span class="eyebrow">Say hello</span>
+    <span style="font-family:'Caveat',cursive;font-size:28px;color:var(--sage-deep);font-weight:500;display:block;margin-bottom:8px;transform:rotate(-2deg);">say hello —</span>
     <h1>Drop me a <em>line.</em></h1>
     <p>I read every message. Recipe requests, substitution questions, cookbook orders, or just to say you made something — all welcome.</p>
 
