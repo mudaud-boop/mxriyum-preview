@@ -1,4 +1,4 @@
-// Shared site scripts: cookbook popup + nav active state
+// Shared site scripts: cookbook popup + mobile nav
 (function () {
   // ─── Cookbook modal (first-visit only) ───
   const modal = document.getElementById('cookbook-modal');
@@ -14,5 +14,22 @@
     };
     modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
     modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+  }
+
+  // ─── Mobile nav drawer ───
+  const burger = document.querySelector('.nav-burger');
+  const drawer = document.querySelector('.mobile-drawer');
+  if (burger && drawer) {
+    const toggle = (open) => {
+      const next = open ?? !drawer.classList.contains('open');
+      drawer.classList.toggle('open', next);
+      burger.classList.toggle('open', next);
+      burger.setAttribute('aria-expanded', String(next));
+      document.body.style.overflow = next ? 'hidden' : '';
+    };
+    burger.addEventListener('click', () => toggle());
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer || e.target.closest('a')) toggle(false);
+    });
   }
 })();
